@@ -14,9 +14,13 @@ namespace CMP1903_A1_2324
          * Create a Die object and call its method.
          * Use debug.assert() to make the comparisons and tests.
          */
+        public Testing()
+        {
+            Game gameTesting = new Game();
+            Die dieTesting = new Die();
+        }
 
-        Game gameTesting = new Game();
-        Die dieTesting = new Die();
+
 
         //Method
     }

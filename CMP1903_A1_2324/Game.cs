@@ -25,5 +25,12 @@ namespace CMP1903_A1_2324
             Die die2 = new Die();
             Die die3 = new Die();
         }
+
+        public void rollDice(Die die1, Die die2, Die die3)
+        {
+            int result1 = die1.rollDie();
+            int result2 = die2.rollDie();
+            int result3 = die3.rollDie();
+        }
     }
 }
