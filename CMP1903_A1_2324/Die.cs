@@ -18,6 +18,16 @@ namespace CMP1903_A1_2324
 
         //Method
 
+        public int rollDie()
+        {
+            int result = 0;
 
+            Random random = new Random();
+            result = random.Next(1, 6);
+
+            return result;
+        }
     }
+
+
 }
