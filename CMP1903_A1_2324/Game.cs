@@ -15,22 +15,29 @@ namespace CMP1903_A1_2324
          * rolls could be continous, and the totals and other statistics could be summarised for example.
          */
 
-
-
-
-        //Methods
-        public void makeDice()
+        public Game()
         {
             Die die1 = new Die();
             Die die2 = new Die();
             Die die3 = new Die();
+
+
         }
 
-        public void rollDice(Die die1, Die die2, Die die3)
+
+        //Methods
+
+        public void playGame(Die die1, Die die2, Die die3)
         {
-            int result1 = die1.rollDie();
-            int result2 = die2.rollDie();
-            int result3 = die3.rollDie();
+            rollDice(die1);
+            rollDice(die2);
+            rollDice(die3);
+        }
+
+        public int rollDice(Die die)
+        {
+            int result = die.rollDie();
+            return result;
         }
     }
 }
