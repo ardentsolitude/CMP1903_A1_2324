@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace CMP1903_A1_2324
 {
@@ -22,7 +22,9 @@ namespace CMP1903_A1_2324
             Die die3 = new Die();
 
             int result1 = rollDice(die1);
+            Thread.Sleep(1); //Due to the way random numbers are done, if they are called too close together, they get the same result.
             int result2 = rollDice(die2);
+            Thread.Sleep(1);
             int result3 = rollDice(die3);
 
             int sumResults = result1 + result2 + result3;

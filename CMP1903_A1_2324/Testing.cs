@@ -17,14 +17,12 @@ namespace CMP1903_A1_2324
          */
         public Testing()
         {
-            Game gameTesting = new Game();
-            Die dieTesting = new Die();
-        }
+            Game gameTesting = new Game(); //Calls game, creates and runs dice
+            Die dieTesting = new Die(); 
 
-        public void testFunctions(Game gameTesting, Die dieTesting)
-        {
-            int testResult = gameTesting.rollDice(dieTesting);
-            Debug.Assert(testResult < 7, "Test Number is Greater Than 6.");
+            //Testing
+            int testResult = gameTesting.rollDice(dieTesting); //Rolls 1 die, outputs random int from 1-6
+            Debug.Assert(testResult < 7, "Test Number is Greater Than 6."); //Test conditions. 
             Debug.Assert(testResult > 0, "Test Number is Less Than 1.");
         }
 
