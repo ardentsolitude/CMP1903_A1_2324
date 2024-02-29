@@ -17,7 +17,13 @@ namespace CMP1903_A1_2324
 
         public Game()
         {
+            Die die1 = new Die();
+            Die die2 = new Die();
+            Die die3 = new Die();
 
+            rollDice(die1);
+            rollDice(die2);
+            rollDice(die3);
 
 
         }
@@ -27,13 +33,7 @@ namespace CMP1903_A1_2324
 
         public void playGame()
         {
-            Die die1 = new Die();
-            Die die2 = new Die();
-            Die die3 = new Die();
-
-            rollDice(die1);
-            rollDice(die2);
-            rollDice(die3);
+            ;
         }
 
         public int rollDice(Die die)
