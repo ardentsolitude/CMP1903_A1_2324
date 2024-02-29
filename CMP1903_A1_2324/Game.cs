@@ -21,9 +21,13 @@ namespace CMP1903_A1_2324
             Die die2 = new Die();
             Die die3 = new Die();
 
-            rollDice(die1);
-            rollDice(die2);
-            rollDice(die3);
+            int result1 = rollDice(die1);
+            int result2 = rollDice(die2);
+            int result3 = rollDice(die3);
+
+            int sumResults = result1 + result2 + result3;
+
+            Console.WriteLine($"The Sum of All Rolls is {sumResults}.");
 
 
         }
@@ -36,7 +40,7 @@ namespace CMP1903_A1_2324
             ;
         }
 
-        public int rollDice(Die die)
+        public int rollDice(Die die) //I don't know why I made this function
         {
             int result = die.rollDie();
             return result;

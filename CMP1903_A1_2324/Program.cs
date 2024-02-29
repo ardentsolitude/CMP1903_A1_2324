@@ -17,7 +17,7 @@ namespace CMP1903_A1_2324
 
             Game game = new Game();
             
-            Testing test = new Testing();
+            //Testing test = new Testing();
 
             game.playGame();
         }

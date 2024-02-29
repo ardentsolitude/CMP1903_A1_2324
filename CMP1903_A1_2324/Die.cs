@@ -24,7 +24,7 @@ namespace CMP1903_A1_2324
 
             Random random = new Random();
             result = random.Next(1, 6);
-
+            Console.WriteLine($"Die Roll = {result}.");
             return result;
         }
     }
