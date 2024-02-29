@@ -17,14 +17,15 @@ namespace CMP1903_A1_2324
 
 
         //Method
-
+         
         public int rollDie()
         {
-            int result = 0;
+            //Note: Move this into its own method at some point
+            int result = 0; 
 
             Random random = new Random();
-            result = random.Next(1, 6);
-            Console.WriteLine($"Die Roll = {result}.");
+            result = random.Next(1, 6); //Generates random int from 1-6
+            Console.WriteLine($"Die Roll = {result}."); 
             return result;
         }
     }
