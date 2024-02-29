@@ -15,6 +15,11 @@ namespace CMP1903_A1_2324
          * rolls could be continous, and the totals and other statistics could be summarised for example.
          */
 
+        Die die1 = new Die();
+        Die die2 = new Die();
+        Die die3 = new Die();
+
+
         //Methods
 
     }
