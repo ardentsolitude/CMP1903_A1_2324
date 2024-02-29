@@ -15,6 +15,9 @@ namespace CMP1903_A1_2324
          * Use debug.assert() to make the comparisons and tests.
          */
 
+        Game gameTesting = new Game();
+        Die dieTesting = new Die();
+
         //Method
     }
 }
