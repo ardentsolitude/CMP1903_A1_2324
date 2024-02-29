@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,13 @@ namespace CMP1903_A1_2324
         {
             Game gameTesting = new Game();
             Die dieTesting = new Die();
+        }
+
+        public void testFunctions(Game gameTesting, Die dieTesting)
+        {
+            int testResult = gameTesting.rollDice(dieTesting);
+            Debug.Assert(testResult < 7, "Test Number is Greater Than 6.");
+            Debug.Assert(testResult > 0, "Test Number is Less Than 1.");
         }
 
 
