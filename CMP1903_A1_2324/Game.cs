@@ -17,9 +17,7 @@ namespace CMP1903_A1_2324
 
         public Game()
         {
-            Die die1 = new Die();
-            Die die2 = new Die();
-            Die die3 = new Die();
+
 
 
         }
@@ -27,8 +25,12 @@ namespace CMP1903_A1_2324
 
         //Methods
 
-        public void playGame(Die die1, Die die2, Die die3)
+        public void playGame()
         {
+            Die die1 = new Die();
+            Die die2 = new Die();
+            Die die3 = new Die();
+
             rollDice(die1);
             rollDice(die2);
             rollDice(die3);
