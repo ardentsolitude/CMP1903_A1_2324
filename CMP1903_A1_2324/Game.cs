@@ -17,19 +17,7 @@ namespace CMP1903_A1_2324
 
         public Game()
         {
-            Die die1 = new Die();
-            Die die2 = new Die();
-            Die die3 = new Die();
-
-            int result1 = rollDice(die1);
-            Thread.Sleep(1); //Due to the way random numbers are done, if they are called too close together, they get the same result.
-            int result2 = rollDice(die2);
-            Thread.Sleep(1);
-            int result3 = rollDice(die3);
-
-            int sumResults = result1 + result2 + result3;
-
-            Console.WriteLine($"The Sum of All Rolls is {sumResults}.");
+            playGame();
 
 
         }
@@ -37,14 +25,27 @@ namespace CMP1903_A1_2324
 
         //Methods
 
+        
         public void playGame()
         {
-            ;
-        }
+            Die die1 = new Die();
+            Die die2 = new Die();
+            Die die3 = new Die();
 
+            int result1 = rollDice(die1);
+            Thread.Sleep(1); //Because random numbers are calculated using the system clock, calling random multiple times in the same instance will return the same value.
+            int result2 = rollDice(die2);
+            Thread.Sleep(1);
+            int result3 = rollDice(die3);
+
+            int sumResults = result1 + result2 + result3;
+
+            Console.WriteLine($"The Sum of All Rolls is {sumResults}.");
+        }
+        
         public int rollDice(Die die) //I don't know why I made this function
         {
-            int result = die.rollDie();
+            int result = die.rollDie(0); //It's bad but it works and when I tried to change it, everything broke.
             return result;
         }
     }

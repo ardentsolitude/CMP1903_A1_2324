@@ -14,14 +14,16 @@ namespace CMP1903_A1_2324
          */
 
         //Property
-
+        public Die()
+        {
+            int result = 0;
+        }
 
         //Method
          
-        public int rollDie()
+        public int rollDie(int result)
         {
-            //Note: Move this into its own method at some point
-            int result = 0; 
+            
 
             Random random = new Random();
             result = random.Next(1, 6); //Generates random int from 1-6
