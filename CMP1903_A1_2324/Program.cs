@@ -18,11 +18,9 @@ namespace CMP1903_A1_2324
       Console.WriteLine("Running Program...\n");
       Game game = new Game(); //Creates game object 
       //Placeholder variable needed because playGame returns the sum for the purpose of making testing work.
-      int placeholder = game.playGame();      //Game runs without requiring user input
+      int placeholder = game.playGame(); //Game runs without requiring user input
       Console.WriteLine("\nTesting Program...\n");
       Testing test = new Testing(); //Creates test object.
-                              
-
     }
   }
 }
