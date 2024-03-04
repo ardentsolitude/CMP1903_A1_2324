@@ -35,7 +35,7 @@ namespace CMP1903_A1_2324
       //int result1 = rollDice(die1); //This calls a function that calls another function.
       int result1 = die1.rollDie();
       Thread.Sleep(1); //Because random numbers are calculated using the system clock, calling random multiple times in the same instance will return the same value.
-                       //int result2 = rollDice(die2);
+      //int result2 = rollDice(die2);
       int result2 = die2.rollDie();
       Thread.Sleep(1);
       //int result3 = rollDice(die3);
