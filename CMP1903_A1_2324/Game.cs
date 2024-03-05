@@ -15,12 +15,6 @@ namespace CMP1903_A1_2324
      * rolls could be continous, and the totals and other statistics could be summarised for example.
      */
 
-    public Game()
-    {
-      ;
-    }
-
-
     //Methods
 
     /// <summary> 
@@ -32,17 +26,14 @@ namespace CMP1903_A1_2324
       Die die1 = new Die();
       Die die2 = new Die();
       Die die3 = new Die();
-
-      //int result1 = rollDice(die1); //This calls a function that calls another function.
       int result1 = die1.rollDie();
+
       Thread.Sleep(1); //Because random numbers are calculated using the system clock, calling random multiple times in the same instance
                        //will return the same value.
                        //Therefore a small delay is needed to prevent this from happening.
-      //int result2 = rollDice(die2);
 
       int result2 = die2.rollDie();
       Thread.Sleep(1);
-      //int result3 = rollDice(die3);
       
       int result3 = die3.rollDie();
 
@@ -52,17 +43,5 @@ namespace CMP1903_A1_2324
 
       return sumResults; //This return is only used for comparing the testing value with the expected results
     }
-
-    /// <summary> 
-    /// Calls the individual roll die functions of the dice 
-    /// </summary>
-    /// 
-    /*
-    public int rollDice(Die die) //I don't know why I made this function
-    {
-        int result = die.rollDie(); //It's bad but it works and when I tried to change it, everything broke.
-        return result;
-    }
-    */
   }
 }

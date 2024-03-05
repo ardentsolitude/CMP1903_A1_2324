@@ -17,10 +17,6 @@ namespace CMP1903_A1_2324
     //Property
 
     private int result = 0; //Result of the roll of the die
-    public Die()
-    {
-      
-    }
 
     public int getValue //Getter/Setter for the die result
     {
