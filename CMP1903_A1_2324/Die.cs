@@ -16,13 +16,13 @@ namespace CMP1903_A1_2324
 
     //Property
 
-    private int result = 0;
+    private int result = 0; //Result of the roll of the die
     public Die()
     {
       
     }
 
-    public int getValue
+    public int getValue //Getter/Setter for the die result
     {
       get {return result; }
       set {result = value;}
@@ -33,8 +33,6 @@ namespace CMP1903_A1_2324
     /// </summary>
     public int rollDie()
     {
-
-
       Random random = new Random();
       result = random.Next(1, 7); //Generates random int from 1-6
       Console.WriteLine($"Die Roll = {result}.");

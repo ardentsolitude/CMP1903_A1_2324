@@ -28,24 +28,29 @@ namespace CMP1903_A1_2324
     /// </summary>
     public int playGame()
     {
+      //Creating 3 die objects
       Die die1 = new Die();
       Die die2 = new Die();
       Die die3 = new Die();
 
       //int result1 = rollDice(die1); //This calls a function that calls another function.
       int result1 = die1.rollDie();
-      Thread.Sleep(1); //Because random numbers are calculated using the system clock, calling random multiple times in the same instance will return the same value.
+      Thread.Sleep(1); //Because random numbers are calculated using the system clock, calling random multiple times in the same instance
+                       //will return the same value.
+                       //Therefore a small delay is needed to prevent this from happening.
       //int result2 = rollDice(die2);
+
       int result2 = die2.rollDie();
       Thread.Sleep(1);
       //int result3 = rollDice(die3);
+      
       int result3 = die3.rollDie();
 
-      int sumResults = result1 + result2 + result3;
+      int sumResults = result1 + result2 + result3; //Summing results - self explanatory
 
       Console.WriteLine($"The Sum of All Rolls is {sumResults}.");
 
-      return sumResults;
+      return sumResults; //This return is only used for comparing the testing value with the expected results
     }
 
     /// <summary> 

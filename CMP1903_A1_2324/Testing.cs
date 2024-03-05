@@ -15,13 +15,14 @@ namespace CMP1903_A1_2324
      * Create a Die object and call its method.
      * Use debug.assert() to make the comparisons and tests.
      */
+
     public Testing()
     {
       Game gameTesting = new Game();
       Die dieTesting = new Die();
 
       //Test Game
-      int testSum = gameTesting.playGame();
+      int testSum = gameTesting.playGame(); //Returns a number between 3 and 18 (3 lots of 1-6)
       Debug.Assert(testSum < 19, "Sum is Greater Than 18."); //Causes error if condition is not filled
       Debug.Assert(testSum > 2, "Sum is Less Than 3.");
 
