@@ -26,16 +26,16 @@ namespace CMP1903_A1_2324
       Die die1 = new Die();
       Die die2 = new Die();
       Die die3 = new Die();
-      int result1 = die1.rollDie();
+      int result1 = die1.roll();
 
       Thread.Sleep(1); //Because random numbers are calculated using the system clock, calling random multiple times in the same instance
                        //will return the same value.
                        //Therefore a small delay is needed to prevent this from happening.
 
-      int result2 = die2.rollDie();
+      int result2 = die2.roll();
       Thread.Sleep(1);
       
-      int result3 = die3.rollDie();
+      int result3 = die3.roll();
 
       int sumResults = result1 + result2 + result3; //Summing results - self explanatory
 
