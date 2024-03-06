@@ -27,7 +27,7 @@ namespace CMP1903_A1_2324
     /// <summary>
     /// Generates a random number from 1-6 and returns it
     /// </summary>
-    public int rollDie()
+    public int roll()
     {
       Random random = new Random();
       result = random.Next(1, 7); //Generates random int from 1-6
