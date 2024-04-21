@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 
@@ -76,6 +77,64 @@ namespace CMP1903_A1_2324 {
             return sumResults; //This return is only used for comparing the testing value with the expected results
             */
             return 0;
+        }
+
+        //Game menu 
+        public int gameMenu() {
+            int menuChoice = 0;
+            bool menuChoiceMade = false;
+
+            while (menuChoiceMade != true) {
+                Console.WriteLine("----------MENU----------");
+                Console.WriteLine("Enter 1 To Select A Game. \nEnter 2 To View Rules. \nEnter 3 View Statistics. \nEnter 4 For Testing. \nEnter 5 To Exit.");
+                string menuChoiceStr = Console.ReadLine();
+                if (int.TryParse(menuChoiceStr, out _)) { //Check if input is an integer
+                    menuChoice = int.Parse(menuChoiceStr);
+                    if (menuChoice > 0 && menuChoice < 6) { //Check if input is between accpeted values
+                        menuChoiceMade = true;
+                    }
+                    else {
+                        Console.WriteLine("Invalid Input. Please Try Again.");
+                    }
+                }
+                else {
+                    Console.WriteLine("Invalid Input. Please Try Again.");
+                }
+            }
+
+            return menuChoice;
+        }
+
+        public void displayRules() {
+            int rulesChoice = 0;
+            bool rulesChoiceMade = false;
+
+            while (rulesChoiceMade != true) {
+                Console.WriteLine("----------RULES----------");
+                Console.WriteLine("Enter 1 For Sevens Out. \nEnter 2 For Three Or More.");
+                string rulesChoiceStr = Console.ReadLine();
+                if (int.TryParse(rulesChoiceStr, out _)) { //Check if input is an integer
+                    rulesChoice = int.Parse(rulesChoiceStr);
+                    if (rulesChoice > 0 && rulesChoice < 3) { //Check if input is between accpeted values
+                        rulesChoiceMade = true;
+                    }
+                    else {
+                        Console.WriteLine("Invalid Input. Please Try Again.");
+                    }
+                }
+                else {
+                    Console.WriteLine("Invalid Input. Please Try Again.");
+                }
+            }
+
+            switch (rulesChoice) {
+                case 1:
+                    Console.WriteLine("Roll two six-sided dice. \nIf the sum is equal to seven, stop. \nOtherwise, add the sum to your score. \nIf the sum is a double, add the sum to your score again."); 
+                    break;
+                case 2: 
+                    Console.WriteLine("Roll five six-sided dice. \nNo Matches: No Points. \nTwo of a Kind: Either re-roll all non-pair dice, or re-roll all dice. \nThree of a Kind: Score 3 points. \nFour of a Kind: Score 6 points. \nFive of a Kind: Score 12 points. \nThe first player to reach 20 points wins.");
+                    break;
+            }
         }
     }
 }

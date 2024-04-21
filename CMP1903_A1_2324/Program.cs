@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,25 @@ namespace CMP1903_A1_2324 {
             Console.WriteLine("\nTesting Program...\n");
             Testing test = new Testing(); //Creates test object.
             */
+
+            //Part 2 starts here
+
+            Game game = new Game(); //Create game object
+            game.gameMenu(); //Open main menu
+
+
         }
+
+        //Selection menu
+        /*
+         * Display Rules
+         * Select Game
+         *      Sevens Out
+         *      Three or More
+         * Statistics
+         * Testing
+         * Quit
+         * */
+
     }
 }
