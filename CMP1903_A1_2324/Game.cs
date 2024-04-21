@@ -79,7 +79,16 @@ namespace CMP1903_A1_2324 {
             return 0;
         }
 
-        //Game menu 
+        //Selection menu
+        /*
+         * Display Rules
+         * Select Game
+         *      Sevens Out
+         *      Three or More
+         * Statistics
+         * Testing
+         * Quit
+         * */
         public int gameMenu() {
             int menuChoice = 0;
             bool menuChoiceMade = false;
@@ -105,6 +114,11 @@ namespace CMP1903_A1_2324 {
             return menuChoice;
         }
 
+        public int selectGame() {
+            return 0; //placeholder
+        }
+
+        //Display rules list
         public void displayRules() {
             int rulesChoice = 0;
             bool rulesChoiceMade = false;
@@ -129,12 +143,16 @@ namespace CMP1903_A1_2324 {
 
             switch (rulesChoice) {
                 case 1:
-                    Console.WriteLine("Roll two six-sided dice. \nIf the sum is equal to seven, stop. \nOtherwise, add the sum to your score. \nIf the sum is a double, add the sum to your score again."); 
+                    Console.WriteLine("\nRoll two six-sided dice. \nIf the sum is equal to seven, stop. \nOtherwise, add the sum to your score. \nIf the sum is a double, add the sum to your score again."); 
                     break;
                 case 2: 
-                    Console.WriteLine("Roll five six-sided dice. \nNo Matches: No Points. \nTwo of a Kind: Either re-roll all non-pair dice, or re-roll all dice. \nThree of a Kind: Score 3 points. \nFour of a Kind: Score 6 points. \nFive of a Kind: Score 12 points. \nThe first player to reach 20 points wins.");
+                    Console.WriteLine("\nRoll five six-sided dice. \nNo Matches: No Points. \nTwo of a Kind: Either re-roll all non-pair dice, or re-roll all dice. \nThree of a Kind: Score 3 points. \nFour of a Kind: Score 6 points. \nFive of a Kind: Score 12 points. \nThe first player to reach 20 points wins.");
                     break;
             }
+        }
+
+        public void displayStatistics() {
+
         }
     }
 }

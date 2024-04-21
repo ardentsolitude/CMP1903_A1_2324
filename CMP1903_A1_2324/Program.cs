@@ -30,21 +30,30 @@ namespace CMP1903_A1_2324 {
             //Part 2 starts here
 
             Game game = new Game(); //Create game object
-            game.gameMenu(); //Open main menu
+            int menuChoice = game.gameMenu(); //Open main menu
+
+            switch (menuChoice) {
+                case 1: //Select Game
+                    game.selectGame();
+                    break;
+                case 2: //View Rules
+                    game.displayRules();
+                    break;
+                case 3: //View Statistics
+                    game.displayStatistics();
+                    break;
+                case 4: //Test Game
+                    Testing testing = new Testing();
+                    break;
+                case 5: //Quit
+                    Console.WriteLine("Exiting...");
+                    break;
+            }
 
 
         }
 
-        //Selection menu
-        /*
-         * Display Rules
-         * Select Game
-         *      Sevens Out
-         *      Three or More
-         * Statistics
-         * Testing
-         * Quit
-         * */
+
 
     }
 }
