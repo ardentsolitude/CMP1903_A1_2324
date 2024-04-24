@@ -99,7 +99,7 @@ namespace CMP1903_A1_2324 {
                 string menuChoiceStr = Console.ReadLine();
                 if (int.TryParse(menuChoiceStr, out _)) { //Check if input is an integer
                     menuChoice = int.Parse(menuChoiceStr);
-                    if (menuChoice > 0 && menuChoice < 6) { //Check if input is between accpeted values
+                    if (menuChoice > 0 && menuChoice < 6) { //Check if input is between accepted values
                         menuChoiceMade = true;
                     }
                     else {
@@ -129,7 +129,7 @@ namespace CMP1903_A1_2324 {
                 string rulesChoiceStr = Console.ReadLine();
                 if (int.TryParse(rulesChoiceStr, out _)) { //Check if input is an integer
                     rulesChoice = int.Parse(rulesChoiceStr);
-                    if (rulesChoice > 0 && rulesChoice < 3) { //Check if input is between accpeted values
+                    if (rulesChoice > 0 && rulesChoice < 3) { //Check if input is between accepted values
                         rulesChoiceMade = true;
                     }
                     else {

@@ -15,6 +15,8 @@ namespace CMP1903_A1_2324 {
          */
 
         public Testing() {
+            //Note: The below section of code is from part 1 of this assignment. It is not used for part 2
+
             /*
             Game gameTesting = new Game();
             Die dieTesting = new Die();

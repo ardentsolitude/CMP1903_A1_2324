@@ -12,7 +12,7 @@ namespace CMP1903_A1_2324 {
          * and one method that rolls the die, returns and integer and takes no parameters.
          */
 
-        //Fortunately, this code doesn't need to be changed for part 2 of this assignment
+      
 
         //Property
 
