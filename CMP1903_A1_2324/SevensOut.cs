@@ -26,75 +26,109 @@ namespace CMP1903_A1_2324 {
         public override void playGame(int playerCount) {
             Die die1 = new Die();
             Die die2 = new Die();
+            bool singlePlayer = false;
 
             if (playerCount == 1) {
-                sevensOnePlayer(die1, die2);
+                singlePlayer = true;
             }
-            else if (playerCount == 2) {
-                sevensTwoPlayer(die1, die2);
-            }
-        }
 
-        public void sevensOnePlayer(Die die1, Die die2) {
-            int playerTurn = 1;
-            int p1Score = 0;
-            int p2Score = 0;
-            bool gameEnded = false;
-            while (!gameEnded) {
-                playerTurn++;
-                playerTurn = playerTurn % 2;
-                if (playerTurn == 0) {
-                    takeTurn(die1, die2, false, playerTurn, p1Score);
+			int playerTurn = 1;
+			int p1Score = 0;
+			int p2Score = 0;
+			bool gameEnded = false;
+			bool p1Out = false;
+			bool p2Out = false;
+			while (!gameEnded) {
+				playerTurn++;
+				playerTurn = playerTurn % 2;
+                //Console.WriteLine($"playerTurn = {playerTurn}");
+				if (playerTurn == 0 && !p1Out) {
+
+					//This was originally a separate function, but I merged it int0 this one to make it easier to work with
+					int die1roll = die1.rollDie();
+					Thread.Sleep(500); //Prevents duplicate numbers, also slows pace of game to for readability reasons
+					int die2roll = die2.rollDie();
+
+						Console.WriteLine($"\nPlayer {playerTurn + 1}'s Turn!\nPress Enter To Begin.");
+						Console.ReadLine();
+						Console.WriteLine($"Player {playerTurn + 1} Rolled {die1roll} and {die2roll}, giving a total of {die1roll + die2roll}.\n");
+
+					if (die1roll == die2roll) {
+						Console.WriteLine("Rolled A Double! \nDouble Points!");
+						p1Score = p1Score + (die1roll + die2roll) * 2;
+					}
+					else {
+						p1Score = p1Score + die1roll + die2roll;
+					}
+
+					if (die1roll + die2roll == 7) {
+						Console.WriteLine("You Got A 7! \nYou're Out!\n");
+						p1Out = true;
+					}
+
+					Console.WriteLine($"Player 1's Score Is {p1Score}.\n");
+
+
+
+				}
+				else if (playerTurn == 1 && !p2Out) {					//Player 2 (Human or Computer)
+
+					int die1roll = die1.rollDie();
+					Thread.Sleep(500); //Prevents duplicate numbers, also slows pace of game to for readability reasons
+					int die2roll = die2.rollDie();
+					if (singlePlayer && playerTurn == 1) { //Computer controlled turn
+						Console.WriteLine("\nComputer's Turn!");
+						Console.WriteLine($"Computer Rolled {die1roll} and {die2roll}, giving a total of {die1roll + die2roll}.\n");
+					}
+
+					else { //Player controlled turn
+						Console.WriteLine($"\nPlayer {playerTurn + 1}'s Turn!\nPress Enter To Begin.");
+						Console.ReadLine();
+						Console.WriteLine($"Player {playerTurn + 1} Rolled {die1roll} and {die2roll}, giving a total of {die1roll + die2roll}.\n");
+					}
+					if (die1roll == die2roll) {
+						Console.WriteLine("Rolled A Double! \nDouble Points!");
+						p2Score = p2Score + (die1roll + die2roll) * 2;
+					}
+					else {
+						p2Score = p2Score + die1roll + die2roll;
+					}
+
+					if (die1roll + die2roll == 7) {
+						Console.WriteLine("You Got A 7! \nYou're Out!\n");
+						p2Out = true;
+					}
+
+					Console.WriteLine($"Player 2's Score Is {p2Score}.\n");
+				}
+
+
+                if(p1Out && p2Out) {
+                    gameEnded = true;
                 }
-                else if (playerTurn == 1) {
-                    takeTurn(die1, die2, true, playerTurn, p2Score); //Computer's turn (no player input required)
-                }
-            }
+			}
 
-        }
+			//I am not proud of the above code
+			Console.WriteLine("\nGame Over!\n");
+			if (p1Score > p2Score) {
+				Console.WriteLine($"Player 1 Wins With A Score Of {p1Score}!");
+			}
+			else if (p2Score > p1Score && singlePlayer == false) {
+				Console.WriteLine($"Player 2 Wins With A Score Of {p2Score}!");
+			}
+			else if (p2Score > p1Score && singlePlayer == true) {
+				Console.WriteLine($"The Computer Wins With A Score Of {p2Score}!");
+			}
+			else {
+				Console.WriteLine($"Both Players Tie With A Score Of {p1Score}!");
+			}
 
-        public void sevensTwoPlayer(Die die1, Die die2) {
-            int playerTurn = 1;
-            int p1Score = 0;
-            int p2Score = 0;
-            bool gameEnded = false;
-            bool p1out = false;
-            bool p2out = false;
-            while (!gameEnded) {
-                playerTurn++;
-                playerTurn = playerTurn % 2;
-                if (playerTurn == 0) {
-                    takeTurn(die1, die2, false, playerTurn, p1Score);
-                }
-                else if (playerTurn == 1) {
-                    takeTurn(die1, die2, false, playerTurn, p2Score);
-                }
-            }
-        }
+			//Statistics handling
 
-        public void takeTurn(Die die1, Die die2, bool autoTurn, int playerTurn, int playerScore) {
-            int die1roll = die1.rollDie();
-            Thread.Sleep(1);
-            int die2roll = die2.rollDie();
-            if (!autoTurn) { //Player controlled turn
-                Console.WriteLine($"Player {playerTurn + 1}'s Turn!\nPress Enter To Begin.");
-                Console.ReadLine();
-                Console.WriteLine($"Player {playerTurn + 1} Rolled {die1roll} and {die2roll}, giving a total of {die1roll + die2roll}.");
-            }
-            else { //Computer controlled turn
-                Console.WriteLine("Computer's Turn!");
-                Console.WriteLine($"Computer Rolled {die1roll} and {die2roll}, giving a total of {die1roll + die2roll}.");
-            }
-            if (die1roll == die2roll) {
-                Console.WriteLine("Rolled A Double! \nDouble Points!");
-            }
-
-            if (die1roll + die2roll == 7) {
-                Console.WriteLine("You Got A 7! \nYou're Out!");
-            }
+			//Exit
+			returnToMenu();
+		}
 
 
-
-        }
     }
 }

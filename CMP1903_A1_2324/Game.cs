@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading;
 
 namespace CMP1903_A1_2324 {
-    internal class Game {
-        /*
+	internal class Game {
+		/*
          * The Game class should create three die objects, roll them, sum and report the total of the three dice rolls.
          *
          * EXTRA: For extra requirements (these aren't required though), the dice rolls could be managed so that the
@@ -15,7 +15,7 @@ namespace CMP1903_A1_2324 {
          */
 
 
-        /*
+		/*
         Rules:
         Dice Games
 
@@ -45,14 +45,14 @@ namespace CMP1903_A1_2324 {
 
         */
 
-        //Methods
+		//Methods
 
-        /// <summary> 
-        /// Creates 3 die objects, rolls them, and sums the rolls 
-        /// </summary>
-         
-        //Note: The below section of code is from part 1 of this assignment. It is not used for part 2
-        /*
+		/// <summary> 
+		/// Creates 3 die objects, rolls them, and sums the rolls 
+		/// </summary>
+
+		//Note: The below section of code is from part 1 of this assignment. It is not used for part 2
+		/*
         public int playGame() {
 
             
@@ -84,36 +84,36 @@ namespace CMP1903_A1_2324 {
         */
 
 
-        //Part II Starts Here
+		//Part II Starts Here
 
-        public Game() {
-            
-        }
+		public Game() {
 
-        public void gameStart() { //Starting point for the games. Calls game menu, program returns here after completing action
-            int menuChoice = gameMenu(); //Open main menu
+		}
 
-            switch (menuChoice) {
-                case 1: //Select Game
-                    selectGame();
-                    break;
-                case 2: //View Rules
-                    displayRules();
-                    break;
-                case 3: //View Statistics
-                    displayStatistics();
-                    break;
-                case 4: //Test Game
-                    Testing testing = new Testing();
-                    break;
-                case 5: //Quit
-                    Console.WriteLine("Exiting...");
-                    break;
-            }
-        }
+		public void gameStart() { //Starting point for the games. Calls game menu, program returns here after completing action
+			int menuChoice = gameMenu(); //Open main menu
 
-        //Selection menu
-        /*
+			switch (menuChoice) {
+				case 1: //Select Game
+					selectGame();
+					break;
+				case 2: //View Rules
+					displayRules();
+					break;
+				case 3: //View Statistics
+					displayStatistics();
+					break;
+				case 4: //Test Game
+					Testing testing = new Testing();
+					break;
+				case 5: //Quit
+					Console.WriteLine("Exiting...");
+					break;
+			}
+		}
+
+		//Selection menu
+		/*
          * Display Rules
          * Select Game
          *      Sevens Out
@@ -122,141 +122,172 @@ namespace CMP1903_A1_2324 {
          * Testing
          * Quit
          * */
-        public int gameMenu() {
-            int menuChoice = 0;
-            bool menuChoiceMade = false;
+		public int gameMenu() {
+			int menuChoice = 0;
+			bool menuChoiceMade = false;
 
-            while (menuChoiceMade != true) {
-                Console.WriteLine("\n----------MENU---------");
-                Console.WriteLine("Enter 1 To Select A Game. \nEnter 2 To View Rules. \nEnter 3 View Statistics. \nEnter 4 For Testing. \nEnter 5 To Exit.");
-                string menuChoiceStr = Console.ReadLine();
-                if (int.TryParse(menuChoiceStr, out _)) { //Check if input is an integer
-                    menuChoice = int.Parse(menuChoiceStr);
-                    if (menuChoice > 0 && menuChoice < 6) { //Check if input is between accepted values
-                        menuChoiceMade = true;
-                    }
-                    else {
-                        Console.WriteLine("Invalid Input. Please Try Again.");
-                    }
-                }
-                else {
-                    Console.WriteLine("Invalid Input. Please Try Again.");
-                }
-            }
+			while (menuChoiceMade != true) {
+				Console.WriteLine("\n----------MENU---------");
+				Console.WriteLine("Enter 1 To Select A Game. \nEnter 2 To View Rules. \nEnter 3 View Statistics. \nEnter 4 For Testing. \nEnter 5 To Exit.");
+				string menuChoiceStr = Console.ReadLine();
+				if (int.TryParse(menuChoiceStr, out _)) { //Check if input is an integer
+					menuChoice = int.Parse(menuChoiceStr);
+					if (menuChoice > 0 && menuChoice < 6) { //Check if input is between accepted values
+						menuChoiceMade = true;
+					}
+					else {
+						Console.WriteLine("Invalid Input. Please Try Again.");
+					}
+				}
+				else {
+					Console.WriteLine("Invalid Input. Please Try Again.");
+				}
+			}
 
-            return menuChoice;
-        }
+			return menuChoice;
+		}
 
-        public void selectGame() {
-            int gameChoice = 0;
-            bool gameChoiceMade = false;
-            int playerCount = 0;
+		public void selectGame() {
+			int gameChoice = 0;
+			bool gameChoiceMade = false;
+			int playerCount = 0;
 
-            while (gameChoiceMade != true) {
-                Console.WriteLine("\n----------GAMES----------");
-                Console.WriteLine("Enter 1 To Play Sevens Out. \nEnter 2 To Play Three Or More. \nEnter 3 To Return To Menu.");
-                string gameChoiceStr = Console.ReadLine();
-                if (int.TryParse(gameChoiceStr, out _)) { //Check if input is an integer
-                    gameChoice = int.Parse(gameChoiceStr);
-                    if (gameChoice > 0 && gameChoice < 4) { //Check if input is between accepted values
-                        gameChoiceMade = true;
-                    }
-                    else {
-                        Console.WriteLine("Invalid Input. Please Try Again.");
-                    }
-                }
-                else {
-                    Console.WriteLine("Invalid Input. Please Try Again.");
-                }
-            }
+			while (gameChoiceMade != true) {
+				Console.WriteLine("\n----------GAMES----------");
+				Console.WriteLine("Enter 1 To Play Sevens Out. \nEnter 2 To Play Three Or More. \nEnter 3 To Return To Menu.");
+				string gameChoiceStr = Console.ReadLine();
+				if (int.TryParse(gameChoiceStr, out _)) { //Check if input is an integer
+					gameChoice = int.Parse(gameChoiceStr);
+					if (gameChoice > 0 && gameChoice < 4) { //Check if input is between accepted values
+						gameChoiceMade = true;
+					}
+					else {
+						Console.WriteLine("Invalid Input. Please Try Again.");
+					}
+				}
+				else {
+					Console.WriteLine("Invalid Input. Please Try Again.");
+				}
+			}
 
-            switch (gameChoice) {
-                case 1:
-                    Console.WriteLine("\nSevens Out Selected.\n");
-                    playerCount = playerChoice();
-                    SevensOut sevens = new SevensOut();
-                    sevens.playGame(playerCount);
-                    break;
-                case 2:
-                    Console.WriteLine("\nThree Or More Selected.\n");
-                    playerCount = playerChoice();
-                    ThreeOrMore threes = new ThreeOrMore();
-                    threes.playGame(playerCount);
-                    break;
-                case 3:
-                    Console.WriteLine("\n");
-                    gameStart(); //Return to start
-                    break;
-            }
-        }
+			switch (gameChoice) {
+				case 1:
+					Console.WriteLine("\nSevens Out Selected.\n");
+					playerCount = playerChoice();
+					SevensOut sevens = new SevensOut();
+					sevens.playGame(playerCount);
+					break;
+				case 2:
+					Console.WriteLine("\nThree Or More Selected.\n");
+					playerCount = playerChoice();
+					ThreeOrMore threes = new ThreeOrMore();
+					threes.playGame(playerCount);
+					break;
+				case 3:
+					Console.WriteLine("\n");
+					gameStart(); //Return to start
+					break;
+			}
+		}
 
-        //Input number of players (player vs computer, player vs player)
-        public int playerChoice() {
-            int playerCount = 0;
-            bool playerChoiceMade = false;
+		//Input number of players (player vs computer, player vs player)
+		public int playerChoice() {
+			int playerCount = 0;
+			bool playerChoiceMade = false;
 
-            while (playerChoiceMade != true) {
-                Console.WriteLine("\n----NUMBER OF PLAYERS----");
-                Console.WriteLine("Enter 1 For Player vs Computer.\nEnter 2 For Player vs Player.");
-                string playerChoiceStr = Console.ReadLine();
-                if (int.TryParse(playerChoiceStr, out _)) { //Check if input is an integer
-                    playerCount = int.Parse(playerChoiceStr);
-                    if (playerCount > 0 && playerCount < 3) { //Check if input is between accepted values
-                        playerChoiceMade = true;
-                    }
-                    else {
-                        Console.WriteLine("Invalid Input. Please Try Again.");
-                    }
-                }
-                else {
-                    Console.WriteLine("Invalid Input. Please Try Again.");
-                }
-            }
-            return playerCount;
-        }
+			while (playerChoiceMade != true) {
+				Console.WriteLine("\n----NUMBER OF PLAYERS----");
+				Console.WriteLine("Enter 1 For Player vs Computer.\nEnter 2 For Player vs Player.");
+				string playerChoiceStr = Console.ReadLine();
+				if (int.TryParse(playerChoiceStr, out _)) { //Check if input is an integer
+					playerCount = int.Parse(playerChoiceStr);
+					if (playerCount > 0 && playerCount < 3) { //Check if input is between accepted values
+						playerChoiceMade = true;
+					}
+					else {
+						Console.WriteLine("Invalid Input. Please Try Again.");
+					}
+				}
+				else {
+					Console.WriteLine("Invalid Input. Please Try Again.");
+				}
+			}
+			return playerCount;
+		}
 
-        //Display rules list
-        public void displayRules() {
-            int rulesChoice = 0;
-            bool rulesChoiceMade = false;
+		//Display rules list
+		public void displayRules() {
+			int rulesChoice = 0;
+			bool rulesChoiceMade = false;
 
-            while (rulesChoiceMade != true) {
-                Console.WriteLine("\n----------RULES----------");
-                Console.WriteLine("Enter 1 For Sevens Out. \nEnter 2 For Three Or More.");
-                string rulesChoiceStr = Console.ReadLine();
-                if (int.TryParse(rulesChoiceStr, out _)) { //Check if input is an integer
-                    rulesChoice = int.Parse(rulesChoiceStr);
-                    if (rulesChoice > 0 && rulesChoice < 3) { //Check if input is between accepted values
-                        rulesChoiceMade = true;
-                    }
-                    else {
-                        Console.WriteLine("Invalid Input. Please Try Again.");
-                    }
-                }
-                else {
-                    Console.WriteLine("Invalid Input. Please Try Again.");
-                }
-            }
+			while (rulesChoiceMade != true) {
+				Console.WriteLine("\n----------RULES----------");
+				Console.WriteLine("Enter 1 For Sevens Out. \nEnter 2 For Three Or More.");
+				string rulesChoiceStr = Console.ReadLine();
+				if (int.TryParse(rulesChoiceStr, out _)) { //Check if input is an integer
+					rulesChoice = int.Parse(rulesChoiceStr);
+					if (rulesChoice > 0 && rulesChoice < 3) { //Check if input is between accepted values
+						rulesChoiceMade = true;
+					}
+					else {
+						Console.WriteLine("Invalid Input. Please Try Again.");
+					}
+				}
+				else {
+					Console.WriteLine("Invalid Input. Please Try Again.");
+				}
+			}
 
-            switch (rulesChoice) {
-                case 1:
-                    Console.WriteLine("\n\nRules of Sevens Out: \nRoll two six-sided dice. \nIf the sum is equal to seven, stop. \nOtherwise, add the sum to your score. \nIf the sum is a double, add the sum to your score again."); 
-                    break;
-                case 2: 
-                    Console.WriteLine("\n\nRules of Three or More: \nRoll five six-sided dice. \nNo Matches: No Points. \nTwo of a Kind: Either re-roll all non-pair dice, or re-roll all dice. \nThree of a Kind: Score 3 points. \nFour of a Kind: Score 6 points. \nFive of a Kind: Score 12 points. \nThe first player to reach 20 points wins.");
-                    break;
-            }
-            Console.WriteLine("\n");
-            gameStart(); // return back to game menu after viewing rules
-        }
+			switch (rulesChoice) {
+				case 1:
+					Console.WriteLine("\n\nRules of Sevens Out: \nRoll two six-sided dice. \nIf the sum is equal to seven, stop. \nOtherwise, add the sum to your score. \nIf the sum is a double, add the sum to your score again.");
+					break;
+				case 2:
+					Console.WriteLine("\n\nRules of Three or More: \nRoll five six-sided dice. \nNo Matches: No Points. \nTwo of a Kind: Either re-roll all non-pair dice, or re-roll all dice. \nThree of a Kind: Score 3 points. \nFour of a Kind: Score 6 points. \nFive of a Kind: Score 12 points. \nThe first player to reach 20 points wins.");
+					break;
+			}
+			Console.WriteLine("\n");
+			gameStart(); // return back to game menu after viewing rules
+		}
 
-        public void displayStatistics() {
-            
-        }
+		public void displayStatistics() {
 
-        public virtual void playGame(int playerCount) {
-            Console.WriteLine("If This Message Appears, An Error Has Occured.");
+		}
 
-        }
-    }
+		public virtual void playGame(int playerCount) {
+			Console.WriteLine("If This Message Appears, An Error Has Occured.");
+
+		}
+
+		public void returnToMenu() {
+			int menuChoice = 0;
+			bool menuChoiceMade = false;
+
+			while (menuChoiceMade != true) {
+				Console.WriteLine("\n----------EXIT----------");
+				Console.WriteLine("Enter 1 To Return To The Main Menu. \nEnter 2 To Quit.");
+				string menuChoiceStr = Console.ReadLine();
+				if (int.TryParse(menuChoiceStr, out _)) { //Check if input is an integer
+					menuChoice = int.Parse(menuChoiceStr);
+					if (menuChoice > 0 && menuChoice < 3) { //Check if input is between accepted values
+						menuChoiceMade = true;
+					}
+					else {
+						Console.WriteLine("Invalid Input. Please Try Again.");
+					}
+				}
+				else {
+					Console.WriteLine("Invalid Input. Please Try Again.");
+				}
+			}
+			switch (menuChoice) {
+				case 1:
+					gameStart();
+					break;
+				case 2:
+					break;
+			}
+
+		}
+	}
 }

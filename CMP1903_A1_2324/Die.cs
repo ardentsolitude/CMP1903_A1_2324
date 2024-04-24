@@ -30,7 +30,7 @@ namespace CMP1903_A1_2324 {
         public int rollDie() {
             Random random = new Random();
             result = random.Next(1, 7); //Generates random int from 1-6
-            Console.WriteLine($"Die Roll = {result}.");
+            //Console.WriteLine($"Die Roll = {result}.");
             return result;
         }
     }
