@@ -185,6 +185,7 @@ namespace CMP1903_A1_2324 {
 					}
 				}
 				else if (count == 2 && rolledPair == true) {
+					Console.WriteLine("You Rolled A Pair!");
 					//Reroll all or limited number
 					rolledPair = true; //rolled a pair
 					if (alreadyRerolled == false) { //Can't reroll more than once
