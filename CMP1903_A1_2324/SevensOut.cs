@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading;
 
 namespace CMP1903_A1_2324 {
-    internal class SevensOut : Game {
-        public SevensOut() {
-            /*
+	internal class SevensOut : Game {
+		public SevensOut() {
+			/*
             Sevens Out
             2 x dice
             Rules:
@@ -21,16 +21,16 @@ namespace CMP1903_A1_2324 {
 
 
 
-        }
+		}
 
-        public override void playGame(int playerCount) {
-            Die die1 = new Die();
-            Die die2 = new Die();
-            bool singlePlayer = false;
+		public override void playGame(int playerCount) {
+			Die die1 = new Die();
+			Die die2 = new Die();
+			bool singlePlayer = false;
 
-            if (playerCount == 1) {
-                singlePlayer = true;
-            }
+			if (playerCount == 1) {
+				singlePlayer = true;
+			}
 
 			int playerTurn = 1;
 			int p1Score = 0;
@@ -41,7 +41,7 @@ namespace CMP1903_A1_2324 {
 			while (!gameEnded) {
 				playerTurn++;
 				playerTurn = playerTurn % 2;
-                //Console.WriteLine($"playerTurn = {playerTurn}");
+				//Console.WriteLine($"playerTurn = {playerTurn}");
 				if (playerTurn == 0 && !p1Out) {
 
 					//This was originally a separate function, but I merged it int0 this one to make it easier to work with
@@ -49,9 +49,9 @@ namespace CMP1903_A1_2324 {
 					Thread.Sleep(500); //Prevents duplicate numbers, also slows pace of game to for readability reasons
 					int die2roll = die2.rollDie();
 
-						Console.WriteLine($"\nPlayer {playerTurn + 1}'s Turn!\nPress Enter To Begin.");
-						Console.ReadLine();
-						Console.WriteLine($"Player {playerTurn + 1} Rolled {die1roll} and {die2roll}, giving a total of {die1roll + die2roll}.\n");
+					Console.WriteLine($"\nPlayer {playerTurn + 1}'s Turn!\nPress Enter To Begin.");
+					Console.ReadLine();
+					Console.WriteLine($"Player {playerTurn + 1} Rolled {die1roll} and {die2roll}, giving a total of {die1roll + die2roll}.\n");
 
 					if (die1roll == die2roll) {
 						Console.WriteLine("Rolled A Double! \nDouble Points!");
@@ -71,7 +71,7 @@ namespace CMP1903_A1_2324 {
 
 
 				}
-				else if (playerTurn == 1 && !p2Out) {					//Player 2 (Human or Computer)
+				else if (playerTurn == 1 && !p2Out) {                   //Player 2 (Human or Computer)
 
 					int die1roll = die1.rollDie();
 					Thread.Sleep(500); //Prevents duplicate numbers, also slows pace of game to for readability reasons
@@ -103,12 +103,14 @@ namespace CMP1903_A1_2324 {
 				}
 
 
-                if(p1Out && p2Out) {
-                    gameEnded = true;
-                }
+				if (p1Out && p2Out) {
+					gameEnded = true;
+				}
 			}
 
 			//I am not proud of the above code
+
+
 			Console.WriteLine("\nGame Over!\n");
 			if (p1Score > p2Score) {
 				Console.WriteLine($"Player 1 Wins With A Score Of {p1Score}!");
@@ -130,5 +132,5 @@ namespace CMP1903_A1_2324 {
 		}
 
 
-    }
+	}
 }

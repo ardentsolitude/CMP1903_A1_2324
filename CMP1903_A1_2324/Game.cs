@@ -243,7 +243,7 @@ namespace CMP1903_A1_2324 {
 					Console.WriteLine("\n\nRules of Sevens Out: \nRoll two six-sided dice. \nIf the sum is equal to seven, stop. \nOtherwise, add the sum to your score. \nIf the sum is a double, add the sum to your score again.");
 					break;
 				case 2:
-					Console.WriteLine("\n\nRules of Three or More: \nRoll five six-sided dice. \nNo Matches: No Points. \nTwo of a Kind: Either re-roll all non-pair dice, or re-roll all dice. \nThree of a Kind: Score 3 points. \nFour of a Kind: Score 6 points. \nFive of a Kind: Score 12 points. \nThe first player to reach 20 points wins.");
+					Console.WriteLine("\n\nRules of Three or More: \nRoll five six-sided dice. \nNo Matches: No Points. \nTwo of a Kind: Either re-roll all remaining dice, or re-roll all dice. \nThree of a Kind: Score 3 points. \nFour of a Kind: Score 6 points. \nFive of a Kind: Score 12 points. \nThe first player to reach 20 points wins.");
 					break;
 			}
 			Console.WriteLine("\n");
@@ -259,7 +259,7 @@ namespace CMP1903_A1_2324 {
 
 		}
 
-		public void returnToMenu() {
+		public void returnToMenu() { //Return to main menu after game is complete - used only by inherited classes
 			int menuChoice = 0;
 			bool menuChoiceMade = false;
 
