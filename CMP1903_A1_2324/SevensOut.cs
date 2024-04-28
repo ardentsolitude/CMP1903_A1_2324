@@ -174,7 +174,7 @@ namespace CMP1903_A1_2324 {
 			//Statistics handling
 
 			//Exit
-			updateStats(winningScore, "Sevens", winner);
+			updateStats(winningScore, "Sevens", winner, p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 			returnToMenu(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 		}
 
