@@ -87,28 +87,29 @@ namespace CMP1903_A1_2324 {
 		//Part II Starts Here
 
 		public Game() {
-
+			//gameStart(); 
 		}
 
-		public void gameStart() { //Starting point for the games. Calls game menu, program returns here after completing action
+		public void gameStart(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) { //Starting point for the games. Calls game menu,
+														  //program returns here after completing a game
 			int menuChoice = gameMenu(); //Open main menu
 
 			//Console.WriteLine($"Menu Choice = {menuChoice}");
 
 			switch (menuChoice) {
 				case 1: //Select Game
-					selectGame();
+					selectGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 					break;
 				case 2: //View Rules
-					displayRules();
+					displayRules(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 					break;
 				case 3: //View Statistics
-					displayStatistics();
+					displayStats(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 					break;
 				case 4: //Test Game
 					Console.WriteLine("Testing :)");
 					Testing testing = new Testing();
-					testing.testGame();
+					testing.testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 					break;
 				case 5: //Quit
 					Console.WriteLine("Exiting...");
@@ -151,7 +152,7 @@ namespace CMP1903_A1_2324 {
 			return menuChoice;
 		}
 
-		public void selectGame() {
+		public void selectGame(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
 			int gameChoice = 0;
 			bool gameChoiceMade = false;
 			int playerCount = 0;
@@ -179,17 +180,17 @@ namespace CMP1903_A1_2324 {
 					Console.WriteLine("\nSevens Out Selected.\n");
 					playerCount = playerChoice();
 					SevensOut sevens = new SevensOut();
-					sevens.playGame(playerCount, false, "");
+					sevens.playGame(playerCount, false, "", p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 					break;
 				case 2:
 					Console.WriteLine("\nThree Or More Selected.\n");
 					playerCount = playerChoice();
 					ThreeOrMore threes = new ThreeOrMore();
-					threes.playGame(playerCount, false, "");
+					threes.playGame(playerCount, false, "", p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 					break;
 				case 3:
 					Console.WriteLine("\n");
-					gameStart(); //Return to start
+					gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore); //Return to start
 					break;
 			}
 		}
@@ -220,7 +221,7 @@ namespace CMP1903_A1_2324 {
 		}
 
 		//Display rules list
-		public void displayRules() {
+		public void displayRules(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
 			int rulesChoice = 0;
 			bool rulesChoiceMade = false;
 
@@ -251,20 +252,20 @@ namespace CMP1903_A1_2324 {
 					break;
 			}
 			Console.WriteLine("\n");
-			gameStart(); // return back to game menu after viewing rules
+			gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore); // return back to game menu after viewing rules
 		}
 
-		public void displayStatistics() {
 
-		}
 
-		public virtual void playGame(int playerCount, bool testingMode, string logSaveLocation) {
+		public virtual void playGame(int playerCount, bool testingMode, string logSaveLocation, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
 			throw new NotImplementedException("No Game Selected! Run From SevensOut.cs or ThreeOrMore.cs Instead.");
 		}
 
-		public void returnToMenu() { //Return to main menu after game is complete - used only by inherited classes
+		public void returnToMenu(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) { //Return to main menu after game is complete - used only by inherited classes
 			int menuChoice = 0;
 			bool menuChoiceMade = false;
+
+			//updateStats(score, gameType);
 
 			while (menuChoiceMade != true) {
 				Console.WriteLine("\nEXIT");
@@ -285,7 +286,7 @@ namespace CMP1903_A1_2324 {
 			}
 			switch (menuChoice) {
 				case 1:
-					gameStart();
+					gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 					break;
 				case 2:
 					break;
@@ -293,9 +294,20 @@ namespace CMP1903_A1_2324 {
 
 		}
 
-		public virtual void writeLog(string gameType) {
+		public virtual void writeLog() {
 
 		}
+		public void displayStats(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) { //Output stats for player
+
+		}
+
+		public void updateStats(int score, string gameType, int winner) {
+
+		}
+		
+
+
+
 	}
 
 	/* A Failed attempt to implement interfaces. Very sad :(

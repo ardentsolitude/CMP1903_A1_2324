@@ -36,7 +36,7 @@ namespace CMP1903_A1_2324 {
 		 
 			//Part II Starts Here :)
 
-        public void testGame() {
+        public void testGame(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
 
 
 			Console.WriteLine("\n--------TESTING--------");
@@ -71,24 +71,24 @@ namespace CMP1903_A1_2324 {
 
 			switch (gameChoice) {
 				case 1:
-					testSevens.playGame(1, true, logSaveLocation); //true activates testing mode, which logs certain results to a text file
+					testSevens.playGame(1, true, logSaveLocation, p1wins, p2wins, sevenGames, threeGames, sevenHighScore); //true activates testing mode, which logs certain results to a text file
 												  //Because I added testing after writing both games, it was easier to do it like this,
 												  //with Debug.Assert and writing a log file included in the actual games themselves.
 					break;
 				case 2:
-					testThrees.playGame(1, true, logSaveLocation);
+					testThrees.playGame(1, true, logSaveLocation, p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 					break;
 				case 3:
 					Console.WriteLine("Enter New Save Location. Use \\\\ Instead of \\ Or /: ");
 					logSaveLocation = Console.ReadLine();
-					testGame();
+					testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 					break;
 				case 4:
 					Console.WriteLine(logSaveLocation);
-					testGame();
+					testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 					break;
 				case 5:
-					testingGame.returnToMenu();
+					testingGame.returnToMenu(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 					break;
 
 			}

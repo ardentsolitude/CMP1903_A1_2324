@@ -32,7 +32,24 @@ namespace CMP1903_A1_2324 {
             //Part II starts here
 
             Game game = new Game(); //Create game object
-            game.gameStart(); //Go to start menu
+
+			//For stats. Horribly clunky, I hate it.
+			//But can't really change it at this point
+			//I have commited a sin against Anders Hejlsberg
+            //I really wish global variables existed in c#
+            //It would mean I don't have to do this
+			int p1wins = 0;
+            int p2wins = 0;
+            int sevenGames = 0;
+            int threeGames = 0;
+            int sevenHighScore = 0;
+            game.gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore); //Go to start menu.
+                                                                                    //Not part of the constructor for game
+                                                                                    //because it breaks the testing class when it is, due to
+                                                                                    //recursion.
+                                                                                    //I know that this entire program is one giant recursion
+                                                                                    //Issue waiting to happen, but it somehow works
+                                                                                    //I don't think I should program in c# anymore 
 
 
 

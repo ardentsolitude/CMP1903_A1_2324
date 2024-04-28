@@ -27,7 +27,7 @@ namespace CMP1903_A1_2324 {
 
 		}
 
-		public override void playGame(int playerCount, bool testingMode, string logSaveLocation) {
+		public override void playGame(int playerCount, bool testingMode, string logSaveLocation, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
 			Die die1 = new Die();
 			Die die2 = new Die();
 			bool singlePlayer = false;
@@ -141,23 +141,41 @@ namespace CMP1903_A1_2324 {
 
 
 			Console.WriteLine("\nGame Over!\n");
+			int winner = 0;
+			int winningScore = 0;
 			if (p1Score > p2Score) {
 				Console.WriteLine($"Player 1 Wins With A Score Of {p1Score}!");
+				winner = 1;
+				winningScore = p1Score;
 			}
 			else if (p2Score > p1Score && singlePlayer == false) {
 				Console.WriteLine($"Player 2 Wins With A Score Of {p2Score}!");
+				winner = 2;
+				winningScore = p2Score;
 			}
 			else if (p2Score > p1Score && singlePlayer == true) {
 				Console.WriteLine($"The Computer Wins With A Score Of {p2Score}!");
+				winner = 2;
+				winningScore = p2Score;
 			}
 			else {
 				Console.WriteLine($"Both Players Tie With A Score Of {p1Score}!");
+				winningScore = p1Score;
+			}
+
+			if (winner == 1) {
+				Console.WriteLine($"Player 2 Loses With A Score Of {p2Score}.");
+			}
+			else if (winner == 2) {
+				Console.WriteLine($"Player 1 Loses With A Score Of {p1Score}.");
+
 			}
 
 			//Statistics handling
 
 			//Exit
-			returnToMenu();
+			updateStats(winningScore, "Sevens", winner);
+			returnToMenu(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 		}
 
 		public void writeLog(int die1, int die2, TextWriter logWriter) {
