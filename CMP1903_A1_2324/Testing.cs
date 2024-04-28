@@ -40,7 +40,7 @@ namespace CMP1903_A1_2324 {
 
 
 			Console.WriteLine("\n--------TESTING--------");
-			Game testGame = new Game();
+			Game testingGame = new Game();
 			SevensOut testSevens = new SevensOut();
 			ThreeOrMore testThrees = new ThreeOrMore();
 
@@ -48,13 +48,14 @@ namespace CMP1903_A1_2324 {
 			bool gameChoiceMade = false;
 
 
+			string logSaveLocation = $"C:\\Users\\{Environment.UserName}\\Documents"; //Default save location 
+
 			while (gameChoiceMade != true) {
-				Console.WriteLine("\n----------GAMES----------");
-				Console.WriteLine("Enter 1 To Test Sevens Out. \nEnter 2 To Test Three Or More. \nEnter 3 To Return To Menu.");
+				Console.WriteLine($"Enter 1 To Test Sevens Out. \nEnter 2 To Test Three Or More. \nEnter 3 To Change Log File Path (Default Is {logSaveLocation}. \nEnter 4 To Show Current Save Location. \nEnter 5 To Return To Menu.");
 				string gameChoiceStr = Console.ReadLine();
 				if (int.TryParse(gameChoiceStr, out _)) { //Check if input is an integer
 					gameChoice = int.Parse(gameChoiceStr);
-					if (gameChoice > 0 && gameChoice < 4) { //Check if input is between accepted values
+					if (gameChoice > 0 && gameChoice < 6) { //Check if input is between accepted values
 						gameChoiceMade = true;
 					}
 					else {
@@ -66,17 +67,28 @@ namespace CMP1903_A1_2324 {
 				}
 			}
 
+
+
 			switch (gameChoice) {
 				case 1:
-					testSevens.playGame(1, true); //true activates testing mode, which logs certain results to a text file
+					testSevens.playGame(1, true, logSaveLocation); //true activates testing mode, which logs certain results to a text file
 												  //Because I added testing after writing both games, it was easier to do it like this,
 												  //with Debug.Assert and writing a log file included in the actual games themselves.
 					break;
 				case 2:
-					testThrees.playGame(1, true);
+					testThrees.playGame(1, true, logSaveLocation);
 					break;
 				case 3:
-					testGame.returnToMenu();
+					Console.WriteLine("Enter New Save Location. Use \\\\ Instead of \\ Or /: ");
+					logSaveLocation = Console.ReadLine();
+					testGame();
+					break;
+				case 4:
+					Console.WriteLine(logSaveLocation);
+					testGame();
+					break;
+				case 5:
+					testingGame.returnToMenu();
 					break;
 
 			}

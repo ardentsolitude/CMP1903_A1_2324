@@ -27,7 +27,7 @@ namespace CMP1903_A1_2324 {
 
 		}
 
-		public override void playGame(int playerCount, bool testingMode) {
+		public override void playGame(int playerCount, bool testingMode, string logSaveLocation) {
 			Die die1 = new Die();
 			Die die2 = new Die();
 			bool singlePlayer = false;
@@ -72,12 +72,15 @@ namespace CMP1903_A1_2324 {
 					}
 
 					if (testingMode == true) {
-						Debug.Assert(p1Out == false, "Player 1 Rolled A Seven. Check Log File For More Information.");
 						if (p1Out == true) {
-							using (StreamWriter logWriter = File.AppendText("logFile.txt")) {
+							//string logSaveLocation = System.IO.Directory.GetCurrentDirectory();
+							Console.WriteLine(logSaveLocation);
+							using (StreamWriter logWriter = File.AppendText(logSaveLocation + "\\logFile.txt")) {
 								writeLog(die1roll, die2roll, logWriter);
 							}
 						}
+						Debug.Assert(p1Out == false, "Player 1 Rolled A Seven. Log Saved To Documents. Check Log File For More Information.");
+
 					}
 
 					Console.WriteLine($"Player 1's Score Is {p1Score}.\n");
@@ -114,12 +117,15 @@ namespace CMP1903_A1_2324 {
 					}
 
 					if (testingMode == true) {
-						Debug.Assert(p2Out == false, "Player 2 Rolled A Seven. Check Log File For More Information.");
 						if (p2Out == true) {
-							using (StreamWriter logWriter = File.AppendText("logFile.txt")) {
+							//string logSaveLocation = System.IO.Directory.GetCurrentDirectory();
+							Console.WriteLine(logSaveLocation);
+							using (StreamWriter logWriter = File.AppendText(logSaveLocation + "\\logFile.txt")) {
 								writeLog(die1roll, die2roll, logWriter);
 							}
 						}
+						Debug.Assert(p2Out == false, "Player 2 Rolled A Seven. Log Saved To Documents. Check Log File For More Information.");
+
 					}
 
 					Console.WriteLine($"Player 2's Score Is {p2Score}.\n");

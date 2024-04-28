@@ -179,13 +179,13 @@ namespace CMP1903_A1_2324 {
 					Console.WriteLine("\nSevens Out Selected.\n");
 					playerCount = playerChoice();
 					SevensOut sevens = new SevensOut();
-					sevens.playGame(playerCount, false);
+					sevens.playGame(playerCount, false, "");
 					break;
 				case 2:
 					Console.WriteLine("\nThree Or More Selected.\n");
 					playerCount = playerChoice();
 					ThreeOrMore threes = new ThreeOrMore();
-					threes.playGame(playerCount, false);
+					threes.playGame(playerCount, false, "");
 					break;
 				case 3:
 					Console.WriteLine("\n");
@@ -258,7 +258,7 @@ namespace CMP1903_A1_2324 {
 
 		}
 
-		public virtual void playGame(int playerCount, bool testingMode) {
+		public virtual void playGame(int playerCount, bool testingMode, string logSaveLocation) {
 			throw new NotImplementedException("No Game Selected! Run From SevensOut.cs or ThreeOrMore.cs Instead.");
 		}
 

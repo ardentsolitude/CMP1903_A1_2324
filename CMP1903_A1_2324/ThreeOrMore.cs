@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 
 namespace CMP1903_A1_2324 {
-	internal class ThreeOrMore : Game{
+	internal class ThreeOrMore : Game {
 		public ThreeOrMore() {
 			/*
             Three or More
@@ -26,7 +26,7 @@ namespace CMP1903_A1_2324 {
 
 		}
 
-		public override void playGame(int playerCount, bool testingMode) {
+		public override void playGame(int playerCount, bool testingMode, string logSaveLocation) {
 			Die die1 = new Die();
 			Die die2 = new Die();
 			Die die3 = new Die();
@@ -79,10 +79,10 @@ namespace CMP1903_A1_2324 {
 				//outputRolls(rolls);
 
 				if (playerTurn == 0) {
-					p1Score = p1Score + checkRolls(rolls, dieList, false, playerTurn, singlePlayer, testingMode);
+					p1Score = p1Score + checkRolls(rolls, dieList, false, playerTurn, singlePlayer, testingMode, logSaveLocation);
 				}
 				else if (playerTurn == 1) {
-					p2Score = p2Score + checkRolls(rolls, dieList, false, playerTurn, singlePlayer, testingMode);
+					p2Score = p2Score + checkRolls(rolls, dieList, false, playerTurn, singlePlayer, testingMode, logSaveLocation);
 				}
 
 				if (playerTurn == 0) {
@@ -92,7 +92,7 @@ namespace CMP1903_A1_2324 {
 					Console.WriteLine($"Your Current Score Is {p2Score}");
 				}
 
-				if(p1Score >=20 || p2Score >= 20) {
+				if (p1Score >= 20 || p2Score >= 20) {
 					gameOver = true;
 				}
 
@@ -117,10 +117,10 @@ namespace CMP1903_A1_2324 {
 				winner = 0;
 			}
 
-			if(winner == 1) {
+			if (winner == 1) {
 				Console.WriteLine($"Player 2 Finished With A Score Of {p2Score}.");
 			}
-			else if(winner == 2) {
+			else if (winner == 2) {
 				Console.WriteLine($"Player 1 Finished With A Score Of {p1Score}.");
 
 			}
@@ -153,7 +153,7 @@ namespace CMP1903_A1_2324 {
 			Console.WriteLine("\n");
 		}
 
-		public int checkRolls(List<int> rolls, List<Die> dieList, bool alreadyRerolled, int playerTurn, bool singlePlayer, bool testingMode) { //Check rolls for duplicates
+		public int checkRolls(List<int> rolls, List<Die> dieList, bool alreadyRerolled, int playerTurn, bool singlePlayer, bool testingMode, string logSaveLocation) { //Check rolls for duplicates
 			rolls.Sort(); //Sort the rolls so they're easier to read for the user.
 			outputRolls(rolls);
 			int[] rollCounts = new int[6]; //how many times each roll appears in the list
@@ -170,13 +170,15 @@ namespace CMP1903_A1_2324 {
 				}
 			}
 
-			if(testingMode == true) {
-				Debug.Assert(rolledPair = false, $"Player {playerTurn + 1} Rolled A Double. Check Log File For More Information.");
+			if (testingMode == true) {
 				if (rolledPair == true) {
-					using (StreamWriter logWriter = File.AppendText("logFile.txt")) {
+					Console.WriteLine(logSaveLocation);
+					using (StreamWriter logWriter = File.AppendText(logSaveLocation + "\\logFile.txt")) {
 						writeLog(pairValue, logWriter);
 					}
 				}
+				Debug.Assert(rolledPair = false, $"Player {playerTurn + 1} Rolled A Double. Log Saved To Documents. Check Log File For More Information. ");
+
 			}
 
 			//Console.WriteLine($"Already Rerolled: {alreadyRerolled}\nRolled Pair: {rolledPair}\nPair Value: {pairValue}");
@@ -247,7 +249,7 @@ namespace CMP1903_A1_2324 {
 						//outputRolls(newRolls);
 						switch (rerollChoice) {
 							case 1: //Reroll all dice
-								points = checkRolls(newRolls, dieList, true, playerTurn, singlePlayer, false);
+								points = checkRolls(newRolls, dieList, true, playerTurn, singlePlayer, false, logSaveLocation);
 								break;
 							case 2: //Reroll some dice
 								newRolls.RemoveAt(3); //I couldn't figure out how to only reroll some of the dice, 
@@ -257,7 +259,7 @@ namespace CMP1903_A1_2324 {
 								newRolls.Insert(0, pairValue);
 								newRolls.Insert(0, pairValue);
 								//outputRolls(newRolls);
-								points = checkRolls(newRolls, dieList, alreadyRerolled, playerTurn, singlePlayer, false);
+								points = checkRolls(newRolls, dieList, alreadyRerolled, playerTurn, singlePlayer, false, logSaveLocation);
 								break;
 						}
 					}
