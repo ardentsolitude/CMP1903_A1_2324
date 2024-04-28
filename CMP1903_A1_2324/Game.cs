@@ -93,6 +93,8 @@ namespace CMP1903_A1_2324 {
 		public void gameStart() { //Starting point for the games. Calls game menu, program returns here after completing action
 			int menuChoice = gameMenu(); //Open main menu
 
+			//Console.WriteLine($"Menu Choice = {menuChoice}");
+
 			switch (menuChoice) {
 				case 1: //Select Game
 					selectGame();
@@ -104,7 +106,9 @@ namespace CMP1903_A1_2324 {
 					displayStatistics();
 					break;
 				case 4: //Test Game
+					Console.WriteLine("Testing :)");
 					Testing testing = new Testing();
+					testing.testGame();
 					break;
 				case 5: //Quit
 					Console.WriteLine("Exiting...");
@@ -153,7 +157,7 @@ namespace CMP1903_A1_2324 {
 			int playerCount = 0;
 
 			while (gameChoiceMade != true) {
-				Console.WriteLine("\n----------GAMES----------");
+				Console.WriteLine("\n----------GAMES---------");
 				Console.WriteLine("Enter 1 To Play Sevens Out. \nEnter 2 To Play Three Or More. \nEnter 3 To Return To Menu.");
 				string gameChoiceStr = Console.ReadLine();
 				if (int.TryParse(gameChoiceStr, out _)) { //Check if input is an integer
@@ -175,13 +179,13 @@ namespace CMP1903_A1_2324 {
 					Console.WriteLine("\nSevens Out Selected.\n");
 					playerCount = playerChoice();
 					SevensOut sevens = new SevensOut();
-					sevens.playGame(playerCount);
+					sevens.playGame(playerCount, false);
 					break;
 				case 2:
 					Console.WriteLine("\nThree Or More Selected.\n");
 					playerCount = playerChoice();
 					ThreeOrMore threes = new ThreeOrMore();
-					threes.playGame(playerCount);
+					threes.playGame(playerCount, false);
 					break;
 				case 3:
 					Console.WriteLine("\n");
@@ -221,7 +225,7 @@ namespace CMP1903_A1_2324 {
 			bool rulesChoiceMade = false;
 
 			while (rulesChoiceMade != true) {
-				Console.WriteLine("\n----------RULES----------");
+				Console.WriteLine("\n----------RULES---------");
 				Console.WriteLine("Enter 1 For Sevens Out. \nEnter 2 For Three Or More.");
 				string rulesChoiceStr = Console.ReadLine();
 				if (int.TryParse(rulesChoiceStr, out _)) { //Check if input is an integer
@@ -254,9 +258,8 @@ namespace CMP1903_A1_2324 {
 
 		}
 
-		public virtual void playGame(int playerCount) {
-			Console.WriteLine("If This Message Appears, An Error Has Occured.");
-
+		public virtual void playGame(int playerCount, bool testingMode) {
+			throw new NotImplementedException("No Game Selected! Run From SevensOut.cs or ThreeOrMore.cs Instead.");
 		}
 
 		public void returnToMenu() { //Return to main menu after game is complete - used only by inherited classes
@@ -264,7 +267,7 @@ namespace CMP1903_A1_2324 {
 			bool menuChoiceMade = false;
 
 			while (menuChoiceMade != true) {
-				Console.WriteLine("\n----------EXIT----------");
+				Console.WriteLine("\nEXIT");
 				Console.WriteLine("Enter 1 To Return To The Main Menu. \nEnter 2 To Quit.");
 				string menuChoiceStr = Console.ReadLine();
 				if (int.TryParse(menuChoiceStr, out _)) { //Check if input is an integer
@@ -289,5 +292,15 @@ namespace CMP1903_A1_2324 {
 			}
 
 		}
+
+		public virtual void writeLog(string gameType) {
+
+		}
 	}
+
+	/* A Failed attempt to implement interfaces. Very sad :(
+	public interface IPlayable() {
+		void playGame(int playerCount);
+	}
+	*/
 }

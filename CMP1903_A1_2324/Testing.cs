@@ -31,9 +31,58 @@ namespace CMP1903_A1_2324 {
             Debug.Assert(testResult < 7, "Number is Greater Than 6."); //Test conditions. 
             Debug.Assert(testResult > 0, "Number is Less Than 1.");
             */
-        
-        
-        }
+
+		}
+		 
+			//Part II Starts Here :)
+
+        public void testGame() {
+
+
+			Console.WriteLine("\n--------TESTING--------");
+			Game testGame = new Game();
+			SevensOut testSevens = new SevensOut();
+			ThreeOrMore testThrees = new ThreeOrMore();
+
+			int gameChoice = 0;
+			bool gameChoiceMade = false;
+
+
+			while (gameChoiceMade != true) {
+				Console.WriteLine("\n----------GAMES----------");
+				Console.WriteLine("Enter 1 To Test Sevens Out. \nEnter 2 To Test Three Or More. \nEnter 3 To Return To Menu.");
+				string gameChoiceStr = Console.ReadLine();
+				if (int.TryParse(gameChoiceStr, out _)) { //Check if input is an integer
+					gameChoice = int.Parse(gameChoiceStr);
+					if (gameChoice > 0 && gameChoice < 4) { //Check if input is between accepted values
+						gameChoiceMade = true;
+					}
+					else {
+						Console.WriteLine("Invalid Input. Please Try Again.");
+					}
+				}
+				else {
+					Console.WriteLine("Invalid Input. Please Try Again.");
+				}
+			}
+
+			switch (gameChoice) {
+				case 1:
+					testSevens.playGame(1, true); //true activates testing mode, which logs certain results to a text file
+												  //Because I added testing after writing both games, it was easier to do it like this,
+												  //with Debug.Assert and writing a log file included in the actual games themselves.
+					break;
+				case 2:
+					testThrees.playGame(1, true);
+					break;
+				case 3:
+					testGame.returnToMenu();
+					break;
+
+			}
+		}
+
+
 
 
 

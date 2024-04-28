@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
 using System.Threading;
 
 namespace CMP1903_A1_2324 {
+
+
 	internal class SevensOut : Game {
 		public SevensOut() {
 			/*
@@ -23,7 +27,7 @@ namespace CMP1903_A1_2324 {
 
 		}
 
-		public override void playGame(int playerCount) {
+		public override void playGame(int playerCount, bool testingMode) {
 			Die die1 = new Die();
 			Die die2 = new Die();
 			bool singlePlayer = false;
@@ -64,6 +68,16 @@ namespace CMP1903_A1_2324 {
 					if (die1roll + die2roll == 7) {
 						Console.WriteLine("You Got A 7! \nYou're Out!\n");
 						p1Out = true;
+
+					}
+
+					if (testingMode == true) {
+						Debug.Assert(p1Out == false, "Player 1 Rolled A Seven. Check Log File For More Information.");
+						if (p1Out == true) {
+							using (StreamWriter logWriter = File.AppendText("logFile.txt")) {
+								writeLog(die1roll, die2roll, logWriter);
+							}
+						}
 					}
 
 					Console.WriteLine($"Player 1's Score Is {p1Score}.\n");
@@ -99,6 +113,15 @@ namespace CMP1903_A1_2324 {
 						p2Out = true;
 					}
 
+					if (testingMode == true) {
+						Debug.Assert(p2Out == false, "Player 2 Rolled A Seven. Check Log File For More Information.");
+						if (p2Out == true) {
+							using (StreamWriter logWriter = File.AppendText("logFile.txt")) {
+								writeLog(die1roll, die2roll, logWriter);
+							}
+						}
+					}
+
 					Console.WriteLine($"Player 2's Score Is {p2Score}.\n");
 				}
 
@@ -131,6 +154,8 @@ namespace CMP1903_A1_2324 {
 			returnToMenu();
 		}
 
-
+		public void writeLog(int die1, int die2, TextWriter logWriter) {
+			logWriter.WriteLine($"\n Time: {DateTime.Now.ToString("HH:mm:ss")}\nRolled 7 ({die1}, {die2})\n\n"); //Write to log file
+		}
 	}
 }

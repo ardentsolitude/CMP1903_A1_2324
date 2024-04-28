@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 
 namespace CMP1903_A1_2324 {
-	internal class ThreeOrMore : Game {
+	internal class ThreeOrMore : Game{
 		public ThreeOrMore() {
 			/*
             Three or More
@@ -24,7 +26,7 @@ namespace CMP1903_A1_2324 {
 
 		}
 
-		public override void playGame(int playerCount) {
+		public override void playGame(int playerCount, bool testingMode) {
 			Die die1 = new Die();
 			Die die2 = new Die();
 			Die die3 = new Die();
@@ -77,10 +79,10 @@ namespace CMP1903_A1_2324 {
 				//outputRolls(rolls);
 
 				if (playerTurn == 0) {
-					p1Score = p1Score + checkRolls(rolls, dieList, false, playerTurn, singlePlayer);
+					p1Score = p1Score + checkRolls(rolls, dieList, false, playerTurn, singlePlayer, testingMode);
 				}
 				else if (playerTurn == 1) {
-					p2Score = p2Score + checkRolls(rolls, dieList, false, playerTurn, singlePlayer);
+					p2Score = p2Score + checkRolls(rolls, dieList, false, playerTurn, singlePlayer, testingMode);
 				}
 
 				if (playerTurn == 0) {
@@ -97,17 +99,30 @@ namespace CMP1903_A1_2324 {
 			}
 
 			Console.WriteLine("\nGame Over!\n");
+			int winner;
 			if (p1Score > p2Score) {
 				Console.WriteLine($"Player 1 Wins With A Score Of {p1Score}!");
+				winner = 1;
 			}
 			else if (p2Score > p1Score && singlePlayer == false) {
 				Console.WriteLine($"Player 2 Wins With A Score Of {p2Score}!");
+				winner = 2;
 			}
 			else if (p2Score > p1Score && singlePlayer == true) {
 				Console.WriteLine($"The Computer Wins With A Score Of {p2Score}!");
+				winner = 2;
 			}
 			else {
 				Console.WriteLine($"Both Players Tie With A Score Of {p1Score}!");
+				winner = 0;
+			}
+
+			if(winner == 1) {
+				Console.WriteLine($"Player 2 Finished With A Score Of {p2Score}.");
+			}
+			else if(winner == 2) {
+				Console.WriteLine($"Player 1 Finished With A Score Of {p1Score}.");
+
 			}
 
 			//Statistics handling
@@ -138,8 +153,8 @@ namespace CMP1903_A1_2324 {
 			Console.WriteLine("\n");
 		}
 
-		public int checkRolls(List<int> rolls, List<Die> dieList, bool alreadyRerolled, int playerTurn, bool singlePlayer) { //Check rolls for duplicates
-			rolls.Sort();
+		public int checkRolls(List<int> rolls, List<Die> dieList, bool alreadyRerolled, int playerTurn, bool singlePlayer, bool testingMode) { //Check rolls for duplicates
+			rolls.Sort(); //Sort the rolls so they're easier to read for the user.
 			outputRolls(rolls);
 			int[] rollCounts = new int[6]; //how many times each roll appears in the list
 										   //outputRolls(rolls);
@@ -152,6 +167,15 @@ namespace CMP1903_A1_2324 {
 				if (count == 2) {
 					pairValue = i;
 					rolledPair = true;
+				}
+			}
+
+			if(testingMode == true) {
+				Debug.Assert(rolledPair = false, $"Player {playerTurn + 1} Rolled A Double. Check Log File For More Information.");
+				if (rolledPair == true) {
+					using (StreamWriter logWriter = File.AppendText("logFile.txt")) {
+						writeLog(pairValue, logWriter);
+					}
 				}
 			}
 
@@ -223,7 +247,7 @@ namespace CMP1903_A1_2324 {
 						//outputRolls(newRolls);
 						switch (rerollChoice) {
 							case 1: //Reroll all dice
-								points = checkRolls(newRolls, dieList, true, playerTurn, singlePlayer);
+								points = checkRolls(newRolls, dieList, true, playerTurn, singlePlayer, false);
 								break;
 							case 2: //Reroll some dice
 								newRolls.RemoveAt(3); //I couldn't figure out how to only reroll some of the dice, 
@@ -233,7 +257,7 @@ namespace CMP1903_A1_2324 {
 								newRolls.Insert(0, pairValue);
 								newRolls.Insert(0, pairValue);
 								//outputRolls(newRolls);
-								points = checkRolls(newRolls, dieList, alreadyRerolled, playerTurn, singlePlayer);
+								points = checkRolls(newRolls, dieList, alreadyRerolled, playerTurn, singlePlayer, false);
 								break;
 						}
 					}
@@ -252,6 +276,10 @@ namespace CMP1903_A1_2324 {
 				Console.WriteLine($"You Scored {points} Points!");
 			}
 			return points;
+		}
+
+		public void writeLog(int pairValue, TextWriter logWriter) {
+			logWriter.WriteLine($"\n Time: {DateTime.Now.ToString("HH:mm:ss")}\nRolled a Pair Of {pairValue}s."); //Write to log file
 		}
 	}
 }
