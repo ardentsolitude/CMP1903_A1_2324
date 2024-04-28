@@ -23,6 +23,8 @@ namespace CMP1903_A1_2324 {
 	        First to a total of 20.
             */
 
+			//I did some maths to this and the odds of rolling a pair with 5 dice is about 46% 
+			//The odds of rolling none of the same number is much lower, at about 9%
 
 		}
 
