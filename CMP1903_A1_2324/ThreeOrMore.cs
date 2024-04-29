@@ -425,7 +425,7 @@ namespace CMP1903_A1_2324 {
 						if (!hasDebugged) {
 							hasDebugged = true; //Stops debug.assert being called 5 times when a pair is found
 							try {
-								Console.WriteLine(logSaveLocation);
+								//Console.WriteLine(logSaveLocation);
 								using (StreamWriter logWriter = File.AppendText(logSaveLocation + "\\logFile.txt")) {
 									writeLog(pairValue, logWriter, playerTurn);
 								}
@@ -433,7 +433,7 @@ namespace CMP1903_A1_2324 {
 							catch (DirectoryNotFoundException error) {
 								Console.WriteLine($"{error}! Invalid File Path!");
 							}
-							Debug.Assert(rolledPair = false, $"Player {playerTurn + 1} Rolled A Double. Log Saved To Documents. Check Log File For More Information. ");
+							Debug.Assert(rolledPair = false, $"Player {playerTurn + 1} Rolled A Double. Log Saved To {logSaveLocation}. Check Log File For More Information. ");
 						}
 					}
 				}
