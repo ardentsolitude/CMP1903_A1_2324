@@ -408,6 +408,7 @@ namespace CMP1903_A1_2324 {
 			int points = 0; //how many points scored
 			bool rolledPair = false; //has a pair been rolled, so doesnt have to reroll for having two pairs in a sequence e.g. 1,1,3,3,4
 			int pairValue = 0; //Number that has been rolled twice
+			bool hasDebugged = false; //Has pair already been debug.assert/logged.
 			for (int i = 1; i < 7; i++) {
 				int count = rolls.Where(temp => temp.Equals(i)).Select(temp => temp).Count();
 				rollCounts[i - 1] = count;
@@ -417,21 +418,27 @@ namespace CMP1903_A1_2324 {
 
 				}
 
+				Console.WriteLine($"Rolled Pair = {rolledPair}");
+
 				if (testingMode == true) {
 					if (rolledPair == true) {
-						try {
-							Console.WriteLine(logSaveLocation);
-							using (StreamWriter logWriter = File.AppendText(logSaveLocation + "\\logFile.txt")) {
-								writeLog(pairValue, logWriter, playerTurn);
+						if (!hasDebugged) {
+							hasDebugged = true; //Stops debug.assert being called 5 times when a pair is found
+							try {
+								Console.WriteLine(logSaveLocation);
+								using (StreamWriter logWriter = File.AppendText(logSaveLocation + "\\logFile.txt")) {
+									writeLog(pairValue, logWriter, playerTurn);
+								}
 							}
-						}
-						catch (DirectoryNotFoundException error) {
-							Console.WriteLine($"{error}! Invalid File Path!");
+							catch (DirectoryNotFoundException error) {
+								Console.WriteLine($"{error}! Invalid File Path!");
+							}
+							Debug.Assert(rolledPair = false, $"Player {playerTurn + 1} Rolled A Double. Log Saved To Documents. Check Log File For More Information. ");
 						}
 					}
 				}
 
-				Debug.Assert(rolledPair = false, $"Player {playerTurn + 1} Rolled A Double. Log Saved To Documents. Check Log File For More Information. ");
+
 
 			}
 
