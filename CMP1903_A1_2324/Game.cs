@@ -113,7 +113,7 @@ namespace CMP1903_A1_2324 {
 					testing.testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore, logSaveLocation);
 					break;
 				case 5: //Quit
-					Console.WriteLine("Exiting...");
+					Console.WriteLine("Exiting :)");
 					break;
 			}
 		}
