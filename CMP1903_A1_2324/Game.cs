@@ -109,10 +109,11 @@ namespace CMP1903_A1_2324 {
 				case 4: //Test Game
 					Console.WriteLine("Testing :)");
 					Testing testing = new Testing();
-					testing.testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+					string logSaveLocation = $"C:\\Users\\{Environment.UserName}\\Documents"; //Default save location
+					testing.testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore, logSaveLocation);
 					break;
 				case 5: //Quit
-					Console.WriteLine("Exiting...");
+					Console.WriteLine("Exiting :)");
 					break;
 			}
 		}
@@ -255,8 +256,12 @@ namespace CMP1903_A1_2324 {
 			gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore); // return back to game menu after viewing rules
 		}
 
+		//Regular Version
+		public virtual void playGame(int playerCount, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
+			throw new NotImplementedException("No Game Selected! Run From SevensOut.cs or ThreeOrMore.cs Instead.");
+		}
 
-
+		//Test Version
 		public virtual void playGame(int playerCount, bool testingMode, string logSaveLocation, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
 			throw new NotImplementedException("No Game Selected! Run From SevensOut.cs or ThreeOrMore.cs Instead.");
 		}
@@ -298,13 +303,16 @@ namespace CMP1903_A1_2324 {
 
 		}
 		public void displayStats(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) { //Output stats for player
-			Console.WriteLine($"You Have Played {sevenGames} Game(s) of Sevens Out And {threeGames} Game(s) Of Three Or More. \nPlayer 1 Has Won {p1wins} Times And Player 2 Has Won {p2wins} Times. \nThe Highest Score Achieved In Sevens Out Is {sevenHighScore} Points.");
+			Console.WriteLine($"You Have Played {sevenGames} Game(s) of Sevens Out And {threeGames} Game(s) Of Three Or More. \nPlayer 1 Has Won {p1wins} Time(s) And Player 2 Has Won {p2wins} Time(s). \nThe Highest Score Achieved In Sevens Out Is {sevenHighScore} Points.");
 			gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 		}
 
 		public void updateStats(int score, string gameType, int winner, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
 			//Updates stats after each game.
 			//This is unfathomably scuffed
+			//This is the reason for all the passing of varibales across basically every function
+			//This is responsible for so many headaches
+
 			if(gameType == "Sevens") {
 				sevenGames++;
 				if(score > sevenHighScore) {

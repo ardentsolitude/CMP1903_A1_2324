@@ -33,10 +33,10 @@ namespace CMP1903_A1_2324 {
             */
 
 		}
-		 
-			//Part II Starts Here :)
 
-        public void testGame(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
+		//Part II Starts Here :)
+
+		public void testGame(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore, string logSaveLocation) {
 
 
 			Console.WriteLine("\n--------TESTING--------");
@@ -48,10 +48,10 @@ namespace CMP1903_A1_2324 {
 			bool gameChoiceMade = false;
 
 
-			string logSaveLocation = $"C:\\Users\\{Environment.UserName}\\Documents"; //Default save location 
+			 
 
 			while (gameChoiceMade != true) {
-				Console.WriteLine($"Enter 1 To Test Sevens Out. \nEnter 2 To Test Three Or More. \nEnter 3 To Change Log File Path (Default Is {logSaveLocation}. \nEnter 4 To Show Current Save Location. \nEnter 5 To Return To Menu.");
+				Console.WriteLine($"Enter 1 To Test Sevens Out. \nEnter 2 To Test Three Or More. \nEnter 3 To Change Log File Path (Default Is C:\\Users\\{Environment.UserName}\\Documents). \nEnter 4 To Show Current Save Location. \nEnter 5 To Return To Menu.");
 				string gameChoiceStr = Console.ReadLine();
 				if (int.TryParse(gameChoiceStr, out _)) { //Check if input is an integer
 					gameChoice = int.Parse(gameChoiceStr);
@@ -81,11 +81,11 @@ namespace CMP1903_A1_2324 {
 				case 3:
 					Console.WriteLine("Enter New Save Location. Use \\\\ Instead of \\ Or /: ");
 					logSaveLocation = Console.ReadLine();
-					testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+					testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore, logSaveLocation);
 					break;
 				case 4:
 					Console.WriteLine(logSaveLocation);
-					testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+					testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore, logSaveLocation);
 					break;
 				case 5:
 					testingGame.returnToMenu(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
