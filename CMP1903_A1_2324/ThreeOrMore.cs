@@ -28,7 +28,7 @@ namespace CMP1903_A1_2324 {
 
 		}
 
-		public override void playGame(int playerCount, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
+		public override void playGame(int playerCount) {
 			Die die1 = new Die();
 			Die die2 = new Die();
 			Die die3 = new Die();
@@ -134,8 +134,8 @@ namespace CMP1903_A1_2324 {
 			//Statistics handling
 
 			//Exit
-			updateStats(winningScore, "Threes", winner, p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
-			//returnToMenu(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+			Stats.updateStats(winningScore, "Threes", winner);
+			returnToMenu();
 
 
 		}
@@ -288,7 +288,7 @@ namespace CMP1903_A1_2324 {
 
 		//Testing Version
 
-		public override void playGame(int playerCount, bool testingMode, string logSaveLocation, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
+		public override void playGame(int playerCount, bool testingMode, string logSaveLocation) {
 			Die die1 = new Die();
 			Die die2 = new Die();
 			Die die3 = new Die();
@@ -394,8 +394,8 @@ namespace CMP1903_A1_2324 {
 			//Statistics handling
 
 			//Exit
-			updateStats(winningScore, "Threes", winner, p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
-			//returnToMenu(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+			Stats.updateStats(winningScore, "Threes", winner);
+			returnToMenu();
 
 
 		}
@@ -418,7 +418,7 @@ namespace CMP1903_A1_2324 {
 
 				}
 
-				Console.WriteLine($"Rolled Pair = {rolledPair}");
+				//Console.WriteLine($"Rolled Pair = {rolledPair}");
 
 				if (testingMode == true) {
 					if (rolledPair == true) {

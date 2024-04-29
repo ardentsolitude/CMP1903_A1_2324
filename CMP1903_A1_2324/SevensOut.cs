@@ -27,7 +27,7 @@ namespace CMP1903_A1_2324 {
 
 		}
 
-		public override void playGame(int playerCount, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
+		public override void playGame(int playerCount) {
 			Die die1 = new Die();
 			Die die2 = new Die();
 			bool singlePlayer = false;
@@ -155,8 +155,8 @@ namespace CMP1903_A1_2324 {
 			//Statistics handling
 
 			//Exit
-			updateStats(winningScore, "Sevens", winner, p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
-			returnToMenu(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+			Stats.updateStats(winningScore, "Sevens", winner);
+			returnToMenu();
 		}
 
 		public void writeLog(int die1, int die2, TextWriter logWriter, int playerTurn) {
@@ -166,7 +166,7 @@ namespace CMP1903_A1_2324 {
 
 
 		//Testing Version - Records Logs
-		public override void playGame(int playerCount, bool testingMode, string logSaveLocation, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
+		public override void playGame(int playerCount, bool testingMode, string logSaveLocation) {
 			Die die1 = new Die();
 			Die die2 = new Die();
 			bool singlePlayer = false;
@@ -336,8 +336,8 @@ namespace CMP1903_A1_2324 {
 			//Statistics handling
 
 			//Exit
-			updateStats(winningScore, "Sevens", winner, p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
-			returnToMenu(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+			Stats.updateStats(winningScore, "Sevens", winner);
+			returnToMenu();
 
 		}
 	}
