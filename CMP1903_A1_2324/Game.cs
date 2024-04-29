@@ -90,7 +90,7 @@ namespace CMP1903_A1_2324 {
 			//gameStart(); 
 		}
 
-		public void gameStart(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) { //Starting point for the games. Calls game menu,
+		public void gameStart() { //Starting point for the games. Calls game menu,
 														  //program returns here after completing a game
 			int menuChoice = gameMenu(); //Open main menu
 
@@ -98,19 +98,20 @@ namespace CMP1903_A1_2324 {
 
 			switch (menuChoice) {
 				case 1: //Select Game
-					selectGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+					selectGame();
 					break;
 				case 2: //View Rules
-					displayRules(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+					displayRules();
 					break;
 				case 3: //View Statistics
-					displayStats(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+					Stats.displayStats();
+					gameStart(); //Go back to menu
 					break;
 				case 4: //Test Game
 					Console.WriteLine("Testing :)");
 					Testing testing = new Testing();
 					string logSaveLocation = $"C:\\Users\\{Environment.UserName}\\Documents"; //Default save location
-					testing.testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore, logSaveLocation);
+					testing.testGame(logSaveLocation);
 					break;
 				case 5: //Quit
 					Console.WriteLine("Exiting :)");
@@ -153,7 +154,7 @@ namespace CMP1903_A1_2324 {
 			return menuChoice;
 		}
 
-		public void selectGame(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
+		public void selectGame() {
 			int gameChoice = 0;
 			bool gameChoiceMade = false;
 			int playerCount = 0;
@@ -181,17 +182,17 @@ namespace CMP1903_A1_2324 {
 					Console.WriteLine("\nSevens Out Selected.\n");
 					playerCount = playerChoice();
 					SevensOut sevens = new SevensOut();
-					sevens.playGame(playerCount, false, "", p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+					sevens.playGame(playerCount, false, "");
 					break;
 				case 2:
 					Console.WriteLine("\nThree Or More Selected.\n");
 					playerCount = playerChoice();
 					ThreeOrMore threes = new ThreeOrMore();
-					threes.playGame(playerCount, false, "", p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+					threes.playGame(playerCount, false, "");
 					break;
 				case 3:
 					Console.WriteLine("\n");
-					gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore); //Return to start
+					gameStart(); //Return to start
 					break;
 			}
 		}
@@ -222,7 +223,7 @@ namespace CMP1903_A1_2324 {
 		}
 
 		//Display rules list
-		public void displayRules(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
+		public void displayRules() {
 			int rulesChoice = 0;
 			bool rulesChoiceMade = false;
 
@@ -253,20 +254,20 @@ namespace CMP1903_A1_2324 {
 					break;
 			}
 			Console.WriteLine("\n");
-			gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore); // return back to game menu after viewing rules
+			gameStart(); // return back to game menu after viewing rules
 		}
 
 		//Regular Version
-		public virtual void playGame(int playerCount, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
+		public virtual void playGame(int playerCount) {
 			throw new NotImplementedException("No Game Selected! Run From SevensOut.cs or ThreeOrMore.cs Instead.");
 		}
 
 		//Test Version
-		public virtual void playGame(int playerCount, bool testingMode, string logSaveLocation, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
+		public virtual void playGame(int playerCount, bool testingMode, string logSaveLocation) {
 			throw new NotImplementedException("No Game Selected! Run From SevensOut.cs or ThreeOrMore.cs Instead.");
 		}
 
-		public void returnToMenu(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) { //Return to main menu after game is complete - used only by inherited classes
+		public void returnToMenu() { //Return to main menu after game is complete - used only by inherited classes
 			int menuChoice = 0;
 			bool menuChoiceMade = false;
 
@@ -291,7 +292,7 @@ namespace CMP1903_A1_2324 {
 			}
 			switch (menuChoice) {
 				case 1:
-					gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+					gameStart();
 					break;
 				case 2:
 					break;
@@ -302,37 +303,9 @@ namespace CMP1903_A1_2324 {
 		public virtual void writeLog() {
 
 		}
-		public void displayStats(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) { //Output stats for player
-			Console.WriteLine($"You Have Played {sevenGames} Game(s) of Sevens Out And {threeGames} Game(s) Of Three Or More. \nPlayer 1 Has Won {p1wins} Time(s) And Player 2 Has Won {p2wins} Time(s). \nThe Highest Score Achieved In Sevens Out Is {sevenHighScore} Points.");
-			gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
-		}
 
-		public void updateStats(int score, string gameType, int winner, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
-			//Updates stats after each game.
-			//This is unfathomably scuffed
-			//This is the reason for all the passing of varibales across basically every function
-			//This is responsible for so many headaches
 
-			if(gameType == "Sevens") {
-				sevenGames++;
-				if(score > sevenHighScore) {
-					sevenHighScore = score;
-				}
-			}
-			else if(gameType == "Threes") {
-				threeGames++;
-			}
 
-			if(winner == 1) {
-				p1wins++;
-			}
-			else if(winner == 2) {
-				p2wins++;
-			}
-
-			returnToMenu(p1wins, p2wins, sevenGames, threeGames, sevenHighScore); //Return back to main menu
-
-		}
 		
 
 
