@@ -31,6 +31,8 @@ namespace CMP1903_A1_2324 {
 
             //Part II starts here
 
+            //A Note From Me: This Is Unfathomable Horrible To Read And Code, But IT WORKS. I Don't Know How Or Why, But It Works
+
             Game game = new Game(); //Create game object
 
 			//For stats. Horribly clunky, I hate it.
@@ -45,8 +47,7 @@ namespace CMP1903_A1_2324 {
             int sevenHighScore = 0;
             game.gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore); //Go to start menu.
                                                                                     //Not part of the constructor for game
-                                                                                    //because it breaks the testing class when it is, due to
-                                                                                    //recursion.
+                                                                                    //because it breaks the testing class when it is, due to recursion.
                                                                                     //I know that this entire program is one giant recursion
                                                                                     //Issue waiting to happen, but it somehow works
                                                                                     //I don't think I should program in c# anymore 

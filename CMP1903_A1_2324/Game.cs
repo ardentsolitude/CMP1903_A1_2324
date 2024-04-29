@@ -109,7 +109,8 @@ namespace CMP1903_A1_2324 {
 				case 4: //Test Game
 					Console.WriteLine("Testing :)");
 					Testing testing = new Testing();
-					testing.testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
+					string logSaveLocation = $"C:\\Users\\{Environment.UserName}\\Documents"; //Default save location
+					testing.testGame(p1wins, p2wins, sevenGames, threeGames, sevenHighScore, logSaveLocation);
 					break;
 				case 5: //Quit
 					Console.WriteLine("Exiting...");
@@ -255,8 +256,12 @@ namespace CMP1903_A1_2324 {
 			gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore); // return back to game menu after viewing rules
 		}
 
+		//Regular Version
+		public virtual void playGame(int playerCount, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
+			throw new NotImplementedException("No Game Selected! Run From SevensOut.cs or ThreeOrMore.cs Instead.");
+		}
 
-
+		//Test Version
 		public virtual void playGame(int playerCount, bool testingMode, string logSaveLocation, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
 			throw new NotImplementedException("No Game Selected! Run From SevensOut.cs or ThreeOrMore.cs Instead.");
 		}
@@ -305,6 +310,9 @@ namespace CMP1903_A1_2324 {
 		public void updateStats(int score, string gameType, int winner, int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) {
 			//Updates stats after each game.
 			//This is unfathomably scuffed
+			//This is the reason for all the passing of varibales across basically every function
+			//This is responsible for so many headaches
+
 			if(gameType == "Sevens") {
 				sevenGames++;
 				if(score > sevenHighScore) {
