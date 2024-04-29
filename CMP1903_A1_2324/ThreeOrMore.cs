@@ -422,7 +422,7 @@ namespace CMP1903_A1_2324 {
 						try {
 							Console.WriteLine(logSaveLocation);
 							using (StreamWriter logWriter = File.AppendText(logSaveLocation + "\\logFile.txt")) {
-								writeLog(pairValue, logWriter);
+								writeLog(pairValue, logWriter, playerTurn);
 							}
 						}
 						catch (DirectoryNotFoundException error) {
@@ -533,8 +533,8 @@ namespace CMP1903_A1_2324 {
 			}
 			return points;
 		}
-		void writeLog(int pairValue, TextWriter logWriter) {
-			logWriter.WriteLine($"\n Time: {DateTime.Now.ToString("HH:mm:ss")}\nRolled a Pair Of {pairValue}s."); //Write to log file
+		void writeLog(int pairValue, TextWriter logWriter, int playerTurn) {
+			logWriter.WriteLine($"\nDate: {DateTime.Today.ToString("d")}\nTime: {DateTime.Now.ToString("HH:mm:ss")}\nPlayer {playerTurn + 1} Rolled a Pair Of {pairValue}s.\n"); //Write to log file
 		}
 	}
 }

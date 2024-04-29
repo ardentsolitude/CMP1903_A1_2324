@@ -303,7 +303,7 @@ namespace CMP1903_A1_2324 {
 
 		}
 		public void displayStats(int p1wins, int p2wins, int sevenGames, int threeGames, int sevenHighScore) { //Output stats for player
-			Console.WriteLine($"You Have Played {sevenGames} Game(s) of Sevens Out And {threeGames} Game(s) Of Three Or More. \nPlayer 1 Has Won {p1wins} Times And Player 2 Has Won {p2wins} Times. \nThe Highest Score Achieved In Sevens Out Is {sevenHighScore} Points.");
+			Console.WriteLine($"You Have Played {sevenGames} Game(s) of Sevens Out And {threeGames} Game(s) Of Three Or More. \nPlayer 1 Has Won {p1wins} Time(s) And Player 2 Has Won {p2wins} Time(s). \nThe Highest Score Achieved In Sevens Out Is {sevenHighScore} Points.");
 			gameStart(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 		}
 

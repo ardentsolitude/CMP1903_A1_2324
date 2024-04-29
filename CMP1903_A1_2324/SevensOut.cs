@@ -62,7 +62,9 @@ namespace CMP1903_A1_2324 {
 						p1Score = p1Score + (die1roll + die2roll) * 2;
 					}
 					else {
-						p1Score = p1Score + die1roll + die2roll;
+						if (die1roll + die1roll != 7) {
+							p1Score = p1Score + die1roll + die2roll;
+						}
 					}
 
 					if (die1roll + die2roll == 7) {
@@ -96,7 +98,9 @@ namespace CMP1903_A1_2324 {
 						p2Score = p2Score + (die1roll + die2roll) * 2;
 					}
 					else {
-						p2Score = p2Score + die1roll + die2roll;
+						if (die1roll + die1roll != 7) {
+							p2Score = p2Score + die1roll + die2roll;
+						}
 					}
 
 					if (die1roll + die2roll == 7) {
@@ -155,8 +159,8 @@ namespace CMP1903_A1_2324 {
 			returnToMenu(p1wins, p2wins, sevenGames, threeGames, sevenHighScore);
 		}
 
-		public void writeLog(int die1, int die2, TextWriter logWriter) {
-			logWriter.WriteLine($"\n Time: {DateTime.Now.ToString("HH:mm:ss")}\nRolled 7 ({die1}, {die2})\n\n"); //Write to log file
+		public void writeLog(int die1, int die2, TextWriter logWriter, int playerTurn) {
+			logWriter.WriteLine($"\nDate: {DateTime.Today.ToString("d")}\nTime: {DateTime.Now.ToString("HH:mm:ss")}\nPlayer {playerTurn + 1} Rolled 7 ({die1}, {die2})\n"); //Write to log file
 		}
 
 
@@ -197,7 +201,9 @@ namespace CMP1903_A1_2324 {
 						p1Score = p1Score + (die1roll + die2roll) * 2;
 					}
 					else {
-						p1Score = p1Score + die1roll + die2roll;
+						if (die1roll + die1roll != 7) {
+							p1Score = p1Score + die1roll + die2roll;
+						}
 					}
 
 					if (die1roll + die2roll == 7) {
@@ -211,7 +217,7 @@ namespace CMP1903_A1_2324 {
 							//string logSaveLocation = System.IO.Directory.GetCurrentDirectory();
 							Console.WriteLine(logSaveLocation);
 							using (StreamWriter logWriter = File.AppendText(logSaveLocation + "\\logFile.txt")) {
-								writeLog(die1roll, die2roll, logWriter);
+								writeLog(die1roll, die2roll, logWriter, playerTurn);
 							}
 						}
 						Debug.Assert(p1Out == false, "Player 1 Rolled A Seven. Log Saved To Documents. Check Log File For More Information.");
@@ -225,7 +231,7 @@ namespace CMP1903_A1_2324 {
 							try {
 								Console.WriteLine(logSaveLocation);
 								using (StreamWriter logWriter = File.AppendText(logSaveLocation + "\\logFile.txt")) {
-									writeLog(die1roll, die2roll, logWriter);
+									writeLog(die1roll, die2roll, logWriter, playerTurn);
 								}
 							}
 							catch (DirectoryNotFoundException error) {
@@ -262,7 +268,9 @@ namespace CMP1903_A1_2324 {
 						p2Score = p2Score + (die1roll + die2roll) * 2;
 					}
 					else {
-						p2Score = p2Score + die1roll + die2roll;
+						if (die1roll + die1roll != 7) {
+							p2Score = p2Score + die1roll + die2roll;
+						}
 					}
 
 					if (die1roll + die2roll == 7) {
@@ -275,7 +283,7 @@ namespace CMP1903_A1_2324 {
 							//string logSaveLocation = System.IO.Directory.GetCurrentDirectory();
 							Console.WriteLine(logSaveLocation);
 							using (StreamWriter logWriter = File.AppendText(logSaveLocation + "\\logFile.txt")) {
-								writeLog(die1roll, die2roll, logWriter);
+								writeLog(die1roll, die2roll, logWriter, playerTurn);
 							}
 						}
 						Debug.Assert(p2Out == false, "Player 2 Rolled A Seven. Log Saved To Documents. Check Log File For More Information.");
