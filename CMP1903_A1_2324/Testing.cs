@@ -76,19 +76,19 @@ namespace CMP1903_A1_2324 {
 												  //with Debug.Assert and writing a log file included in the actual games themselves.
 					break;
 				case 2:
-					testThrees.playGame(1, true, logSaveLocation);
+					testThrees.playGame(1, true, logSaveLocation); //Test three or more
 					break;
 				case 3:
-					Console.WriteLine("Enter New Save Location. Use \\\\ Instead of \\ Or /: ");
+					Console.WriteLine("Enter New Save Location. Use \\\\ Instead of \\ Or /: "); //Update save location
 					logSaveLocation = Console.ReadLine();
 					testGame(logSaveLocation);
 					break;
 				case 4:
-					Console.WriteLine(logSaveLocation);
+					Console.WriteLine(logSaveLocation); //Output save location
 					testGame(logSaveLocation);
 					break;
 				case 5:
-					testingGame.returnToMenu();
+					testingGame.returnToMenu(); //return to menu
 					break;
 
 			}

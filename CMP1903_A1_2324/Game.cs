@@ -84,12 +84,17 @@ namespace CMP1903_A1_2324 {
         */
 
 
+
 		//Part II Starts Here
 
 		public Game() {
-			//gameStart(); 
+			//gameStart(); //Game start isn't called in the construction because at some point
+			//in development it lead to recursion issues so it got removed but I never put it back in after the issue was solved
 		}
 
+		/// <summary>
+		/// Starting point for the game
+		/// </summary>
 		public void gameStart() { //Starting point for the games. Calls game menu,
 														  //program returns here after completing a game
 			int menuChoice = gameMenu(); //Open main menu
@@ -109,12 +114,12 @@ namespace CMP1903_A1_2324 {
 					break;
 				case 4: //Test Game
 					Console.WriteLine("Testing :)");
-					Testing testing = new Testing();
+					Testing testing = new Testing(); //Initialises testing object
 					string logSaveLocation = $"C:\\Users\\{Environment.UserName}\\Documents"; //Default save location
-					testing.testGame(logSaveLocation);
+					testing.testGame(logSaveLocation); //Starts testing process, passes save location of log files
 					break;
 				case 5: //Quit
-					Console.WriteLine("Exiting :)");
+					Console.WriteLine("Exiting :)"); //Does nothing else, so the program exits
 					break;
 			}
 		}
@@ -129,7 +134,12 @@ namespace CMP1903_A1_2324 {
          * Testing
          * Quit
          * */
-		public int gameMenu() {
+
+		/// <summary>
+		/// Gets user selction of main action i.e. game/rules/stats/test/quit
+		/// </summary>
+		/// <returns></returns>
+		public int gameMenu() { //Main menu code
 			int menuChoice = 0;
 			bool menuChoiceMade = false;
 
@@ -154,7 +164,10 @@ namespace CMP1903_A1_2324 {
 			return menuChoice;
 		}
 
-		public void selectGame() {
+		/// <summary>
+		/// Allows user to select what game they want to play
+		/// </summary>
+		public void selectGame() { //Game selection menu. Can select sevens out/three or more
 			int gameChoice = 0;
 			bool gameChoiceMade = false;
 			int playerCount = 0;
@@ -180,15 +193,15 @@ namespace CMP1903_A1_2324 {
 			switch (gameChoice) {
 				case 1:
 					Console.WriteLine("\nSevens Out Selected.\n");
-					playerCount = playerChoice();
+					playerCount = playerChoice(); //number of players (player vs computer, player vs player)
 					SevensOut sevens = new SevensOut();
-					sevens.playGame(playerCount, false, "");
+					sevens.playGame(playerCount);
 					break;
 				case 2:
 					Console.WriteLine("\nThree Or More Selected.\n");
-					playerCount = playerChoice();
+					playerCount = playerChoice(); //number of players (player vs computer, player vs player)
 					ThreeOrMore threes = new ThreeOrMore();
-					threes.playGame(playerCount, false, "");
+					threes.playGame(playerCount);
 					break;
 				case 3:
 					Console.WriteLine("\n");
@@ -198,6 +211,10 @@ namespace CMP1903_A1_2324 {
 		}
 
 		//Input number of players (player vs computer, player vs player)
+		/// <summary>
+		/// Get number of players
+		/// </summary>
+		/// <returns></returns>
 		public int playerChoice() {
 			int playerCount = 0;
 			bool playerChoiceMade = false;
@@ -223,6 +240,9 @@ namespace CMP1903_A1_2324 {
 		}
 
 		//Display rules list
+		/// <summary>
+		/// Display rules for sevens out and three or more
+		/// </summary>
 		public void displayRules() {
 			int rulesChoice = 0;
 			bool rulesChoiceMade = false;
@@ -258,11 +278,23 @@ namespace CMP1903_A1_2324 {
 		}
 
 		//Regular Version
+		/// <summary>
+		/// Play a game
+		/// </summary>
+		/// <param name="playerCount"></param>
+		/// <exception cref="NotImplementedException"></exception>
 		public virtual void playGame(int playerCount) {
 			throw new NotImplementedException("No Game Selected! Run From SevensOut.cs or ThreeOrMore.cs Instead.");
 		}
 
 		//Test Version
+		/// <summary>
+		/// Play a game. Test version
+		/// </summary>
+		/// <param name="playerCount"></param>
+		/// <param name="testingMode"></param>
+		/// <param name="logSaveLocation"></param>
+		/// <exception cref="NotImplementedException"></exception>
 		public virtual void playGame(int playerCount, bool testingMode, string logSaveLocation) {
 			throw new NotImplementedException("No Game Selected! Run From SevensOut.cs or ThreeOrMore.cs Instead.");
 		}
@@ -299,6 +331,7 @@ namespace CMP1903_A1_2324 {
 			}
 
 		}
+
 
 		public virtual void writeLog() {
 

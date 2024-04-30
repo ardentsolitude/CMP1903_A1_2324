@@ -28,6 +28,10 @@ namespace CMP1903_A1_2324 {
 
 		}
 
+		/// <summary>
+		/// Base function for 3 or more
+		/// </summary>
+		/// <param name="playerCount"></param>
 		public override void playGame(int playerCount) {
 			Die die1 = new Die();
 			Die die2 = new Die();
@@ -151,7 +155,10 @@ namespace CMP1903_A1_2324 {
 		}
 
 
-
+		/// <summary>
+		/// Outputs the 5 rolls of the dice
+		/// </summary>
+		/// <param name="rolls"></param>
 		public void outputRolls(List<int> rolls) {
 			Console.Write("You Rolled ");
 			foreach (var roll in rolls) {
@@ -160,9 +167,18 @@ namespace CMP1903_A1_2324 {
 			Console.WriteLine("\n");
 		}
 
+		/// <summary>
+		/// Checks the rolls for multiples and scores the player
+		/// </summary>
+		/// <param name="rolls"></param>
+		/// <param name="dieList"></param>
+		/// <param name="alreadyRerolled"></param>
+		/// <param name="playerTurn"></param>
+		/// <param name="singlePlayer"></param>
+		/// <returns></returns>
 		public int checkRolls(List<int> rolls, List<Die> dieList, bool alreadyRerolled, int playerTurn, bool singlePlayer) { //Check rolls for duplicates
 			rolls.Sort(); //Sort the rolls so they're easier to read for the user.
-			outputRolls(rolls);
+			outputRolls(rolls); 
 			int[] rollCounts = new int[6]; //how many times each roll appears in the list
 										   //outputRolls(rolls);
 			int points = 0; //how many points scored
@@ -179,7 +195,7 @@ namespace CMP1903_A1_2324 {
 
 
 
-				Debug.Assert(rolledPair = false, $"Player {playerTurn + 1} Rolled A Double. Log Saved To Documents. Check Log File For More Information. ");
+				//Debug.Assert(rolledPair = false, $"Player {playerTurn + 1} Rolled A Double. Log Saved To Documents. Check Log File For More Information. ");
 
 			}
 
@@ -288,6 +304,12 @@ namespace CMP1903_A1_2324 {
 
 		//Testing Version
 
+		/// <summary>
+		/// Testing version of 3 or more
+		/// </summary>
+		/// <param name="playerCount"></param>
+		/// <param name="testingMode"></param>
+		/// <param name="logSaveLocation"></param>
 		public override void playGame(int playerCount, bool testingMode, string logSaveLocation) {
 			Die die1 = new Die();
 			Die die2 = new Die();
@@ -400,6 +422,18 @@ namespace CMP1903_A1_2324 {
 
 		}
 
+		//Testing version - saves logs
+		/// <summary>
+		/// Checks rolls for duplicates, records logs when a pair is rolled
+		/// </summary>
+		/// <param name="rolls"></param>
+		/// <param name="dieList"></param>
+		/// <param name="alreadyRerolled"></param>
+		/// <param name="playerTurn"></param>
+		/// <param name="singlePlayer"></param>
+		/// <param name="testingMode"></param>
+		/// <param name="logSaveLocation"></param>
+		/// <returns></returns>
 		public int checkRolls(List<int> rolls, List<Die> dieList, bool alreadyRerolled, int playerTurn, bool singlePlayer, bool testingMode, string logSaveLocation) { //Check rolls for duplicates
 			rolls.Sort(); //Sort the rolls so they're easier to read for the user.
 			outputRolls(rolls);
@@ -410,7 +444,7 @@ namespace CMP1903_A1_2324 {
 			int pairValue = 0; //Number that has been rolled twice
 			bool hasDebugged = false; //Has pair already been debug.assert/logged.
 			for (int i = 1; i < 7; i++) {
-				int count = rolls.Where(temp => temp.Equals(i)).Select(temp => temp).Count();
+				int count = rolls.Where(temp => temp.Equals(i)).Select(temp => temp).Count(); //I don't fully understand LINQ Queries, but this seems to work
 				rollCounts[i - 1] = count;
 				if (count == 2) {
 					pairValue = i;
@@ -420,9 +454,9 @@ namespace CMP1903_A1_2324 {
 
 				//Console.WriteLine($"Rolled Pair = {rolledPair}");
 
-				if (testingMode == true) {
-					if (rolledPair == true) {
-						if (!hasDebugged) {
+				if (testingMode == true) { //Testing version of code
+					if (rolledPair == true) { //Stops testing from happening multiple times when a pair is rolled
+						if (!hasDebugged) { 
 							hasDebugged = true; //Stops debug.assert being called 5 times when a pair is found
 							try {
 								//Console.WriteLine(logSaveLocation);
@@ -430,7 +464,7 @@ namespace CMP1903_A1_2324 {
 									writeLog(pairValue, logWriter, playerTurn);
 								}
 							}
-							catch (DirectoryNotFoundException error) {
+							catch (DirectoryNotFoundException error) { //When the user specifies a filepath that doesnt exist
 								Console.WriteLine($"{error}! Invalid File Path!");
 							}
 							Debug.Assert(rolledPair = false, $"Player {playerTurn + 1} Rolled A Double. Log Saved To {logSaveLocation}. Check Log File For More Information. ");
@@ -475,7 +509,8 @@ namespace CMP1903_A1_2324 {
 					Console.WriteLine("You Rolled A Pair!");
 					//Reroll all or limited number
 					rolledPair = true; //rolled a pair
-					if (alreadyRerolled == false) { //Can't reroll more than once
+					if (alreadyRerolled == false) { //Can't reroll more than once, because it dragged on the game for too long,
+													//and conventional games with rerolling have similar rules
 						alreadyRerolled = true;
 						int rerollChoice = 0;
 						if (singlePlayer == true && playerTurn == 1) {
@@ -535,12 +570,19 @@ namespace CMP1903_A1_2324 {
 				}
 
 			}
-			if (rolledPair == true && alreadyRerolled == true || rolledPair == false) {
+			if (rolledPair == true && alreadyRerolled == true || rolledPair == false) { //Prevents outputting 0 points when a pair is rolled after rerolling
 				Console.WriteLine($"You Scored {points} Points!");
 			}
 			return points;
 		}
-		void writeLog(int pairValue, TextWriter logWriter, int playerTurn) {
+
+		/// <summary>
+		/// Writes a log of rolled pairs to a text file
+		/// </summary>
+		/// <param name="pairValue"></param>
+		/// <param name="logWriter"></param>
+		/// <param name="playerTurn"></param>
+		void writeLog(int pairValue, TextWriter logWriter, int playerTurn) { //Write info to log file
 			logWriter.WriteLine($"\nDate: {DateTime.Today.ToString("d")}\nTime: {DateTime.Now.ToString("HH:mm:ss")}\nPlayer {playerTurn + 1} Rolled a Pair Of {pairValue}s.\n"); //Write to log file
 		}
 	}
